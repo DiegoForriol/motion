@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consigna Equipaje Cuenca – Taquillas para Turistas | Locker Cuenca</title>
+<meta name="description" content="Guarda tu equipaje en nuestras taquillas automáticas en el centro de Cuenca. Desde X€/día. Abierto todos los días. A 5 min de las Casas Colgadas. ✓ Sin esperas.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --primary: #c0392b;
+    --primary-dark: #962d22;
+    --primary-light: #fadbd8;
+    --dark: #1a1a2e;
+    --text: #2c3e50;
+    --muted: #7f8c8d;
+    --border: #e8ecef;
+    --bg: #f8f9fa;
+    --white: #ffffff;
+    --green: #27ae60;
+    --radius: 10px;
+    --shadow: 0 2px 20px rgba(0,0,0,0.08);
+  }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: var(--text); background: var(--white); line-height: 1.7; font-size: 16px; }
+
+  /* HEADER */
+  header { background: var(--dark); padding: 0 5%; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 1100px; margin: 0 auto; }
+  .logo { color: white; font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px; text-decoration: none; }
+  .logo span { color: var(--primary); }
+  nav { display: flex; gap: 24px; }
+  nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  nav a:hover { color: white; }
+  .nav-cta { background: var(--primary); color: white !important; padding: 8px 18px; border-radius: 6px; font-weight: 600; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, var(--dark) 0%, #2c3e50 100%); color: white; padding: 80px 5%; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+  .hero-badge { display: inline-block; background: rgba(192,57,43,0.3); border: 1px solid rgba(192,57,43,0.5); color: #f1948a; padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto; }
+  .hero h1 em { color: #e74c3c; font-style: normal; }
+  .hero p { font-size: 1.15rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 36px; }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--primary); color: white; padding: 15px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+  .btn-secondary { background: rgba(255,255,255,0.1); color: white; padding: 15px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); transition: background 0.2s; }
+  .btn-secondary:hover { background: rgba(255,255,255,0.2); }
+  .hero-trust { display: flex; gap: 28px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
+  .trust-item { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.65); font-size: 0.85rem; }
+  .trust-item svg { opacity: 0.8; }
+
+  /* STEPS */
+  .section { padding: 70px 5%; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 10px; }
+  .section-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: var(--dark); margin-bottom: 12px; }
+  .section-subtitle { color: var(--muted); font-size: 1.05rem; max-width: 560px; }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 40px; }
+  .step { background: var(--bg); border-radius: var(--radius); padding: 28px 24px; position: relative; border: 1px solid var(--border); }
+  .step-num { width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; margin-bottom: 16px; }
+  .step h3 { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+  .step p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  /* PRICING */
+  .pricing-section { background: var(--bg); padding: 70px 5%; }
+  .pricing-inner { max-width: 1100px; margin: 0 auto; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+  .price-card { background: white; border-radius: var(--radius); padding: 32px 28px; border: 2px solid var(--border); transition: border-color 0.2s, box-shadow 0.2s; position: relative; }
+  .price-card.featured { border-color: var(--primary); }
+  .price-card.featured::before { content: 'Más popular'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; font-size: 0.72rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+  .price-card:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+  .price-icon { font-size: 2.2rem; margin-bottom: 14px; }
+  .price-name { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .price-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+  .price-amount { font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+  .price-amount span { font-size: 1rem; font-weight: 500; color: var(--muted); }
+  .price-day { font-size: 0.85rem; color: var(--muted); margin-bottom: 20px; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .price-features li { font-size: 0.875rem; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .price-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .price-note { text-align: center; margin-top: 28px; color: var(--muted); font-size: 0.85rem; }
+
+  /* WHY US */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 40px; }
+  .why-card { display: flex; gap: 16px; align-items: flex-start; }
+  .why-icon { width: 48px; height: 48px; background: var(--primary-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.4rem; }
+  .why-card h3 { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .why-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+  /* MAP / LOCATION */
+  .location-section { background: var(--dark); color: white; padding: 70px 5%; }
+  .location-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .location-inner .section-title { color: white; }
+  .location-inner .section-label { color: #e74c3c; }
+  .location-detail { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
+  .location-detail-icon { width: 40px; height: 40px; background: rgba(192,57,43,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .location-detail h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+  .location-detail p { color: rgba(255,255,255,0.9); font-size: 0.95rem; }
+  .map-placeholder { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: rgba(255,255,255,0.4); gap: 12px; font-size: 0.9rem; }
+  .map-placeholder svg { opacity: 0.4; }
+  .proximity-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .proximity-tag { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.8); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; }
+
+  /* SCHEDULE */
+  .schedule-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+  .schedule-table th { background: var(--primary); color: white; padding: 12px 16px; text-align: left; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .schedule-table th:first-child { border-radius: 8px 0 0 0; }
+  .schedule-table th:last-child { border-radius: 0 8px 0 0; }
+  .schedule-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+  .schedule-table tr:last-child td { border-bottom: none; }
+  .schedule-table tr:nth-child(even) td { background: var(--bg); }
+  .open-badge { background: #d5f5e3; color: var(--green); font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 10px; }
+
+  /* FOR WHO */
+  .for-who { background: var(--bg); padding: 70px 5%; }
+  .for-who-inner { max-width: 1100px; margin: 0 auto; }
+  .profiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 40px; }
+  .profile { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 20px; text-align: center; transition: box-shadow 0.2s; }
+  .profile:hover { box-shadow: var(--shadow); }
+  .profile-emoji { font-size: 2rem; margin-bottom: 12px; display: block; }
+  .profile h3 { font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+  .profile p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  /* FAQ */
+  .faq-list { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .faq-q { padding: 18px 20px; font-weight: 600; font-size: 0.95rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--dark); user-select: none; background: white; }
+  .faq-q:hover { background: var(--bg); }
+  .faq-q::after { content: '+'; font-size: 1.4rem; color: var(--primary); font-weight: 300; flex-shrink: 0; }
+  .faq-a { padding: 0 20px 18px; font-size: 0.9rem; color: var(--muted); line-height: 1.7; background: white; }
+
+  /* RELATED */
+  .related { padding: 60px 5%; max-width: 1100px; margin: 0 auto; }
+  .related h2 { font-size: 1.3rem; font-weight: 700; color: var(--dark); margin-bottom: 24px; }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .related-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-decoration: none; color: var(--text); transition: box-shadow 0.2s, border-color 0.2s; display: flex; gap: 14px; align-items: flex-start; }
+  .related-card:hover { box-shadow: var(--shadow); border-color: var(--primary); }
+  .related-emoji { font-size: 1.5rem; flex-shrink: 0; }
+  .related-card h3 { font-size: 0.88rem; font-weight: 600; color: var(--dark); margin-bottom: 4px; line-height: 1.4; }
+  .related-card p { font-size: 0.78rem; color: var(--muted); }
+
+  /* CTA BANNER */
+  .cta-banner { background: linear-gradient(135deg, var(--primary) 0%, #922b21 100%); padding: 60px 5%; text-align: center; color: white; }
+  .cta-banner h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; margin-bottom: 14px; }
+  .cta-banner p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 30px; }
+  .cta-banner .btn-white { background: white; color: var(--primary); padding: 15px 36px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; display: inline-block; transition: transform 0.15s; }
+  .cta-banner .btn-white:hover { transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer { background: var(--dark); color: rgba(255,255,255,0.5); text-align: center; padding: 28px 5%; font-size: 0.85rem; }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  footer strong { color: rgba(255,255,255,0.8); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .location-inner { grid-template-columns: 1fr; gap: 36px; }
+    nav { display: none; }
+    .hero { padding: 60px 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">Locker<span>Cuenca</span></a>
+    <nav>
+      <a href="/consigna-equipaje-cuenca/">Consigna</a>
+      <a href="/taquillas-cuenca/">Taquillas</a>
+      <a href="/precios/">Precios</a>
+      <a href="/guia-que-ver-en-cuenca/">Qué ver en Cuenca</a>
+      <a href="/contacto/" class="nav-cta">Reservar</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">📍 Centro histórico de Cuenca</div>
+  <h1>Consigna de Equipaje en Cuenca:<br><em>Deja la Maleta, Disfruta la Ciudad</em></h1>
+  <p>Taquillas automáticas en pleno casco histórico. Seguras, fáciles y económicas. A 5 minutos de las Casas Colgadas.</p>
+  <div class="hero-btns">
+    <a href="#precios" class="btn-primary">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      Ver precios
+    </a>
+    <a href="#ubicacion" class="btn-secondary">📍 Cómo llegar</a>
+  </div>
+  <div class="hero-trust">
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Equipaje asegurado
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Abierto todos los días
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.2 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.16 6.16l1.27-.64a2 2 0 012.11-.45c.9.339 1.853.552 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Sin reserva previa
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+      Pago con tarjeta
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <p class="section-label">¿Cómo funciona?</p>
+  <h2 class="section-title">Guarda tu equipaje en 3 pasos</h2>
+  <p class="section-subtitle">Sin complicaciones, sin esperas. En menos de 5 minutos tu maleta está segura.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Llega a nuestro local</h3>
+      <p>Estamos en [dirección], en el centro histórico de Cuenca. A 5 minutos a pie de las Casas Colgadas.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Elige tu taquilla</h3>
+      <p>Disponemos de taquillas para mochila, maleta de mano y maleta grande. Te asignamos la que mejor se adapta.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Disfruta Cuenca sin peso</h3>
+      <p>Cierra con tu código personal y listo. Vuelve a recoger el equipaje cuando quieras, dentro del horario.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Recoge cuando quieras</h3>
+      <p>Vuelve antes del cierre y recoge tu equipaje con el mismo código. Aceptamos efectivo y tarjeta.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-section" id="precios">
+  <div class="pricing-inner">
+    <p class="section-label">Tarifas</p>
+    <h2 class="section-title">Precios sin sorpresas</h2>
+    <p class="section-subtitle">Sin comisiones ocultas. Pagas exactamente lo que ves aquí.</p>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="price-icon">🎒</div>
+        <div class="price-name">Mochila / Bolso</div>
+        <div class="price-desc">Hasta 30 litros · Bolsos de viaje</div>
+        <div class="price-amount">X€ <span>/ hora</span></div>
+        <div class="price-day">o X€ / día completo (24h)</div>
+        <ul class="price-features">
+          <li>Taquilla individual con código</li>
+          <li>Acceso ilimitado durante el día</li>
+          <li>Equipaje asegurado</li>
+        </ul>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-icon">🧳</div>
+        <div class="price-name">Maleta Mediana</div>
+        <div class="price-desc">20-24 pulgadas · La más solicitada</div>
+        <div class="price-amount">X€ <span>/ hora</span></div>
+        <div class="price-day">o X€ / día completo (24h)</div>
+        <ul class="price-features">
+          <li>Taquilla amplia con código</li>
+          <li>Acceso ilimitado durante el día</li>
+          <li>Equipaje asegurado</li>
+          <li>Incluye maleta de mano adicional</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <div class="price-icon">📦</div>
+        <div class="price-name">Maleta Grande</div>
+        <div class="price-desc">26-30 pulgadas · Equipaje voluminoso</div>
+        <div class="price-amount">X€ <span>/ hora</span></div>
+        <div class="price-day">o X€ / día completo (24h)</div>
+        <ul class="price-features">
+          <li>Taquilla extra grande</li>
+          <li>Acceso ilimitado durante el día</li>
+          <li>Equipaje asegurado</li>
+          <li>Válido para equipaje especial</li>
+        </ul>
+      </div>
+
+    </div>
+    <p class="price-note">¿Tienes un grupo o necesitas guardar más de 5 maletas? <strong>Consúltanos para tarifas especiales.</strong></p>
+  </div>
+</div>
+
+<!-- WHY US -->
+<div class="section">
+  <p class="section-label">Por qué elegirnos</p>
+  <h2 class="section-title">La mejor consigna del centro de Cuenca</h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">📍</div>
+      <div>
+        <h3>Ubicación inmejorable</h3>
+        <p>En el corazón del casco histórico. A 5 min de las Casas Colgadas, la Catedral y el Puente de San Pablo.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔒</div>
+      <div>
+        <h3>Seguridad garantizada</h3>
+        <p>Cierre electrónico con código personal exclusivo. Videovigilancia 24h en todas las instalaciones.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⏰</div>
+      <div>
+        <h3>Abiertos todos los días</h3>
+        <p>De X:00 a X:00 h, incluidos fines de semana y festivos. Perfectos para excursiones de un día.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📦</div>
+      <div>
+        <h3>Todos los tamaños</h3>
+        <p>Desde una mochila hasta una maleta de 30 pulgadas. Si tienes dudas, consúltanos antes de venir.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💳</div>
+      <div>
+        <h3>Pago fácil</h3>
+        <p>Aceptamos tarjeta de crédito/débito y efectivo. Sin reserva previa necesaria.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💬</div>
+      <div>
+        <h3>Atención en persona</h3>
+        <p>Siempre hay alguien disponible para ayudarte. En español, inglés y francés.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOCATION -->
+<section class="location-section" id="ubicacion">
+  <div class="location-inner">
+    <div>
+      <p class="section-label">Dónde estamos</p>
+      <h2 class="section-title">En el centro de Cuenca</h2>
+      <br>
+      <div class="location-detail">
+        <div class="location-detail-icon">📍</div>
+        <div>
+          <h4>Dirección</h4>
+          <p>[Tu dirección completa], Cuenca 16001</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="location-detail-icon">📞</div>
+        <div>
+          <h4>Teléfono</h4>
+          <p>+34 XXX XXX XXX</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="location-detail-icon">🕐</div>
+        <div>
+          <h4>Horario</h4>
+          <p>Todos los días de X:00 a X:00 h</p>
+        </div>
+      </div>
+      <div class="proximity-tags">
+        <span class="proximity-tag">🏛️ 5 min · Casas Colgadas</span>
+        <span class="proximity-tag">⛪ 3 min · Catedral</span>
+        <span class="proximity-tag">🌉 7 min · Puente San Pablo</span>
+        <span class="proximity-tag">🚂 X min · Estación AVE</span>
+      </div>
+    </div>
+    <div class="map-placeholder">
+      <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Aquí irá el mapa de Google Maps embebido<br>
+      <small>(Pegar código embed desde Google Maps)</small>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<div class="section">
+  <p class="section-label">Horario</p>
+  <h2 class="section-title">Abiertos cuando nos necesitas</h2>
+  <table class="schedule-table">
+    <thead>
+      <tr>
+        <th>Día</th>
+        <th>Apertura</th>
+        <th>Cierre</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Lunes – Viernes</td><td>X:00 h</td><td>X:00 h</td><td><span class="open-badge">Abierto</span></td></tr>
+      <tr><td>Sábados</td><td>X:00 h</td><td>X:00 h</td><td><span class="open-badge">Abierto</span></td></tr>
+      <tr><td>Domingos</td><td>X:00 h</td><td>X:00 h</td><td><span class="open-badge">Abierto</span></td></tr>
+      <tr><td>Festivos</td><td>X:00 h</td><td>X:00 h</td><td><span class="open-badge">Abierto</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FOR WHO -->
+<div class="for-who">
+  <div class="for-who-inner">
+    <p class="section-label">¿Para quién?</p>
+    <h2 class="section-title">Ideal para todo tipo de viajeros</h2>
+    <div class="profiles">
+      <div class="profile">
+        <span class="profile-emoji">🚆</span>
+        <h3>Excursionistas desde Madrid</h3>
+        <p>Llegas en AVE, dejas la maleta y tienes el día libre para explorar sin peso.</p>
+      </div>
+      <div class="profile">
+        <span class="profile-emoji">🏨</span>
+        <h3>Check-out temprano</h3>
+        <p>Has dejado el hotel pero tu tren sale por la tarde. Guarda el equipaje y sigue disfrutando.</p>
+      </div>
+      <div class="profile">
+        <span class="profile-emoji">👨‍👩‍👧</span>
+        <h3>Familias con niños</h3>
+        <p>Moverse por el casco histórico es mucho más fácil sin arrastrar maletas con los peques.</p>
+      </div>
+      <div class="profile">
+        <span class="profile-emoji">🎒</span>
+        <h3>Mochileros de ruta</h3>
+        <p>Cuenca de paso en tu viaje por España. Deja la mochila y visita la ciudad a fondo.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <p class="section-label">Preguntas frecuentes</p>
+  <h2 class="section-title">Todo lo que necesitas saber</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">¿Necesito reservar con antelación?</div>
+      <div class="faq-a">No. Puedes venir directamente a nuestras instalaciones y ocupar una taquilla disponible. Si quieres asegurarte de tener sitio en temporada alta, también puedes reservar online desde esta web.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Cuánto tiempo puedo dejar el equipaje?</div>
+      <div class="faq-a">El tiempo que necesites. Cobramos por horas o por día completo (hasta 24 horas). Si necesitas más de un día, consúltanos y buscamos la mejor tarifa para ti.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Qué pasa si pierdo el código de mi taquilla?</div>
+      <div class="faq-a">Nuestro personal te ayudará a recuperar el acceso sin problema. Siempre hay alguien disponible en el local durante el horario de apertura.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Hay taquillas para maletas muy grandes o bultos especiales?</div>
+      <div class="faq-a">Disponemos de taquillas de diferentes tamaños, incluidas opciones extra grandes. Para equipaje especialmente voluminoso (sillas de bebé, equipos deportivos), consúltanos antes de venir.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Aceptáis pago con tarjeta?</div>
+      <div class="faq-a">Sí, aceptamos tarjeta de crédito y débito (Visa, Mastercard) y efectivo. No hay gastos adicionales por pagar con tarjeta.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Está asegurado mi equipaje?</div>
+      <div class="faq-a">Sí, el equipaje guardado en nuestras instalaciones está asegurado. Contamos con videovigilancia 24h y sistemas de cierre electrónico individual.</div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="related">
+  <h2>¿Qué vas a hacer en Cuenca?</h2>
+  <div class="related-grid">
+    <a href="/guia-que-ver-en-cuenca/" class="related-card">
+      <span class="related-emoji">🗺️</span>
+      <div>
+        <h3>Qué ver en Cuenca: guía completa</h3>
+        <p>Las mejores atracciones, itinerarios y consejos prácticos.</p>
+      </div>
+    </a>
+    <a href="/excursion-cuenca-desde-madrid/" class="related-card">
+      <span class="related-emoji">🚆</span>
+      <div>
+        <h3>Excursión desde Madrid en un día</h3>
+        <p>Horarios de tren, qué ver y cómo organizarte.</p>
+      </div>
+    </a>
+    <a href="/casas-colgadas-cuenca/" class="related-card">
+      <span class="related-emoji">🏛️</span>
+      <div>
+        <h3>Casas Colgadas de Cuenca</h3>
+        <p>Horario, precio de entrada y cómo visitarlas.</p>
+      </div>
+    </a>
+    <a href="/como-llegar-cuenca-desde-madrid/" class="related-card">
+      <span class="related-emoji">📍</span>
+      <div>
+        <h3>Cómo llegar a Cuenca desde Madrid</h3>
+        <p>Tren, bus y coche. Tiempos y precios comparados.</p>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <h2>¿Listo para explorar Cuenca sin maletas?</h2>
+  <p>Ven directamente o resérvanos tu taquilla online. Sin esperas, sin complicaciones.</p>
+  <a href="/reservar/" class="btn-white">Reservar taquilla ahora</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Locker Cuenca</strong> · Consigna de equipaje y taquillas en Cuenca, España · <a href="tel:+34XXXXXXXXX">+34 XXX XXX XXX</a></p>
+  <p style="margin-top:8px"><a href="/">Inicio</a> · <a href="/consigna-equipaje-cuenca/">Consigna</a> · <a href="/taquillas-cuenca/">Taquillas</a> · <a href="/guia-que-ver-en-cuenca/">Qué ver en Cuenca</a> · <a href="/contacto/">Contacto</a></p>
+</footer>
+
+</body>
+</html>

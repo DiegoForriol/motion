@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eclipse Solar Total Cuenca 2026 – 12 Agosto | Consigna de Equipaje</title>
+  <meta name="description" content="Eclipse total en Cuenca el 12 de agosto de 2026 a las 20:32. 54 segundos de totalidad. Guarda tus maletas en nuestra consigna y vive el eclipse sin peso. ✓ Centro histórico.">
+  <style>
+    :root {
+      --rojo: #e63946;
+      --negro: #0a0a0f;
+      --negro2: #12121a;
+      --negro3: #1a1a28;
+      --gris: #2a2a3a;
+      --blanco: #f8f9fa;
+      --blanco2: #e0e0e8;
+      --dorado: #f4c430;
+      --azul-eclipse: #1a1a4e;
+      --violeta: #6b21a8;
+      --naranja: #f97316;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--negro);
+      color: var(--blanco);
+      line-height: 1.65;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: rgba(10,10,15,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(230,57,70,0.3);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px; }
+    .logo span { color: var(--rojo); }
+    .header-cta {
+      background: var(--rojo);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .header-cta:hover { background: #c62d3a; }
+
+    /* ── HERO ── */
+    .hero {
+      background: radial-gradient(ellipse at center top, #1a1a4e 0%, #0a0a1e 40%, #0a0a0f 100%);
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 8%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 25%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 12%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 30%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 5%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 75%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 78% 68%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 95% 80%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(2px 2px at 20% 45%, rgba(255,255,200,0.9) 0%, transparent 100%),
+        radial-gradient(2px 2px at 75% 40%, rgba(255,220,180,0.8) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .eclipse-visual {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 36px;
+    }
+    .eclipse-sun {
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, #fff7e0 0%, #f4c430 30%, #f97316 60%, #e63946 80%, transparent 100%);
+      border-radius: 50%;
+      box-shadow:
+        0 0 40px 20px rgba(244,196,48,0.4),
+        0 0 80px 40px rgba(244,196,48,0.2),
+        0 0 120px 60px rgba(230,57,70,0.1);
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .eclipse-moon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-30%, -50%);
+      width: 190px;
+      height: 190px;
+      background: var(--negro);
+      border-radius: 50%;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+    }
+    .corona {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: transparent;
+      box-shadow:
+        0 0 30px 15px rgba(255,220,120,0.15),
+        0 0 60px 30px rgba(255,200,80,0.08),
+        0 0 100px 50px rgba(255,160,40,0.05);
+      animation: pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(244,196,48,0.2), rgba(249,115,22,0.2));
+      border: 1px solid rgba(244,196,48,0.5);
+      color: var(--dorado);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      max-width: 800px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--dorado);
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--blanco2);
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+
+    /* ── COUNTDOWN ── */
+    .countdown {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .cd-block {
+      background: rgba(244,196,48,0.08);
+      border: 1px solid rgba(244,196,48,0.3);
+      border-radius: 12px;
+      padding: 16px 24px;
+      text-align: center;
+      min-width: 90px;
+    }
+    .cd-number {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--dorado);
+      display: block;
+      line-height: 1;
+    }
+    .cd-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 6px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn-primary {
+      background: var(--rojo);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      transition: all 0.2s;
+      letter-spacing: -0.2px;
+    }
+    .btn-primary:hover { background: #c62d3a; transform: translateY(-2px); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: var(--blanco);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 16px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+
+    /* ── DATOS ECLIPSE ── */
+    .eclipse-data {
+      background: var(--negro2);
+      padding: 80px 24px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dorado);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 40px;
+    }
+    .eclipse-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .eclipse-stat {
+      background: var(--negro3);
+      border: 1px solid rgba(244,196,48,0.15);
+      border-radius: 14px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .eclipse-stat::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--dorado), var(--naranja));
+    }
+    .stat-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .stat-value {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--dorado);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+    .historical-note {
+      background: linear-gradient(135deg, rgba(107,33,168,0.15), rgba(244,196,48,0.08));
+      border: 1px solid rgba(107,33,168,0.4);
+      border-radius: 16px;
+      padding: 32px 36px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .historical-note .icon { font-size: 2.5rem; flex-shrink: 0; }
+    .historical-note h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--dorado); }
+    .historical-note p { color: var(--blanco2); font-size: 0.95rem; }
+
+    /* ── PLAN DEL DÍA ── */
+    .plan-section {
+      background: var(--negro);
+      padding: 80px 24px;
+    }
+    .plan-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      max-width: 680px;
+    }
+    .plan-steps::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--dorado), var(--naranja), var(--rojo), var(--violeta));
+    }
+    .plan-step {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      padding: 20px 0 20px 70px;
+      position: relative;
+    }
+    .step-dot {
+      position: absolute;
+      left: 22px;
+      top: 28px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--dorado);
+      border: 2px solid var(--negro);
+      flex-shrink: 0;
+    }
+    .step-dot.highlight {
+      width: 22px;
+      height: 22px;
+      left: 20px;
+      top: 26px;
+      background: var(--rojo);
+      box-shadow: 0 0 15px rgba(230,57,70,0.6);
+    }
+    .step-time {
+      font-size: 0.8rem;
+      color: var(--dorado);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      padding-top: 2px;
+      min-width: 60px;
+    }
+    .step-content h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .step-content p { color: rgba(255,255,255,0.65); font-size: 0.9rem; }
+    .step-content.eclipse-moment h3 { color: var(--dorado); font-size: 1.2rem; }
+    .step-content.eclipse-moment p { color: var(--blanco2); }
+
+    /* ── MIRADORES ── */
+    .miradores-section {
+      background: var(--negro2);
+      padding: 80px 24px;
+    }
+    .miradores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .mirador-card {
+      background: var(--negro3);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .mirador-card:hover { border-color: rgba(244,196,48,0.4); transform: translateY(-4px); }
+    .mirador-header {
+      padding: 24px 24px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .mirador-name { font-size: 1.05rem; font-weight: 800; }
+    .mirador-badge {
+      background: rgba(244,196,48,0.15);
+      color: var(--dorado);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .mirador-badge.recomendado {
+      background: rgba(230,57,70,0.15);
+      color: var(--rojo);
+    }
+    .mirador-body { padding: 0 24px 24px; }
+    .mirador-duration {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--dorado);
+      margin-bottom: 8px;
+    }
+    .mirador-desc { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+    /* ── CONSIGNA CTA ── */
+    .consigna-section {
+      background: linear-gradient(135deg, #1a0a0a 0%, #0a0a1e 100%);
+      padding: 80px 24px;
+      border-top: 1px solid rgba(230,57,70,0.2);
+      border-bottom: 1px solid rgba(230,57,70,0.2);
+    }
+    .consigna-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .consigna-inner .section-title { margin-bottom: 16px; }
+    .consigna-inner p { color: var(--blanco2); margin-bottom: 28px; }
+    .consigna-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .consigna-feature {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .consigna-feature .icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(230,57,70,0.15);
+      border: 1px solid rgba(230,57,70,0.3);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .consigna-feature .text { font-size: 0.92rem; color: var(--blanco2); padding-top: 6px; }
+    .pricing-card {
+      background: var(--negro3);
+      border: 1px solid rgba(244,196,48,0.25);
+      border-radius: 20px;
+      padding: 32px 28px;
+    }
+    .pricing-card h3 { font-size: 1rem; color: var(--dorado); margin-bottom: 20px; font-weight: 700; }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .price-row:last-of-type { border-bottom: none; }
+    .price-item { font-size: 0.9rem; color: var(--blanco2); }
+    .price-amount { font-weight: 800; color: var(--blanco); }
+    .price-note {
+      margin-top: 16px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      background: var(--negro);
+      padding: 80px 24px;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 16px;
+      max-width: 1000px;
+    }
+    .faq-item {
+      background: var(--negro2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 22px 24px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-q .arrow { color: var(--dorado); font-size: 1rem; flex-shrink: 0; }
+    .faq-a {
+      padding: 0 24px 22px;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* ── ALERT BANNER ── */
+    .alert-banner {
+      background: linear-gradient(135deg, var(--rojo), #c62d3a);
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .alert-banner h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    .alert-banner p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      max-width: 560px;
+      margin: 0 auto 28px;
+    }
+    .alert-banner .btn-white {
+      background: #fff;
+      color: var(--rojo);
+      padding: 16px 36px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .alert-banner .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--negro2);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 36px 24px;
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+    }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a:hover { color: var(--rojo); }
+
+    @media (max-width: 768px) {
+      .consigna-inner { grid-template-columns: 1fr; gap: 36px; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .countdown { gap: 10px; }
+      .cd-block { padding: 12px 16px; min-width: 72px; }
+      .cd-number { font-size: 1.8rem; }
+      .historical-note { flex-direction: column; gap: 12px; }
+      .plan-steps { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Locker<span>Cuenca</span></div>
+  <a href="#consigna" class="header-cta">Reservar Taquilla</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="stars"></div>
+
+  <div class="eclipse-visual">
+    <div class="eclipse-sun"></div>
+    <div class="eclipse-moon"></div>
+    <div class="corona"></div>
+  </div>
+
+  <div class="hero-badge">⚡ Evento único — 12 Agosto 2026</div>
+
+  <h1>Eclipse Solar Total<br>en <em>Cuenca</em></h1>
+
+  <p class="hero-sub">
+    54 segundos de oscuridad total a las 20:32. El primero desde 1905.
+    El próximo, en 2053. <strong>Vívelo con las manos libres.</strong>
+  </p>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown" id="countdown">
+    <div class="cd-block">
+      <span class="cd-number" id="cd-days">62</span>
+      <span class="cd-label">días</span>
+    </div>
+    <div class="cd-block">
+      <span class="cd-number" id="cd-hours">14</span>
+      <span class="cd-label">horas</span>
+    </div>
+    <div class="cd-block">
+      <span class="cd-number" id="cd-min">32</span>
+      <span class="cd-label">min</span>
+    </div>
+    <div class="cd-block">
+      <span class="cd-number" id="cd-sec">00</span>
+      <span class="cd-label">seg</span>
+    </div>
+  </div>
+
+  <div class="hero-cta-group">
+    <a href="#consigna" class="btn-primary">Guarda tus maletas ese día</a>
+    <a href="#plan" class="btn-secondary">Ver el plan del día</a>
+  </div>
+</section>
+
+<!-- DATOS DEL ECLIPSE -->
+<section class="eclipse-data">
+  <div class="container">
+    <div class="section-label">El Gran Eclipse</div>
+    <h2 class="section-title">Lo que va a pasar el 12 de agosto</h2>
+
+    <div class="eclipse-grid">
+      <div class="eclipse-stat">
+        <div class="stat-icon">🗓️</div>
+        <div class="stat-value">12 Agosto</div>
+        <div class="stat-label">Miércoles 2026 — día del eclipse</div>
+      </div>
+      <div class="eclipse-stat">
+        <div class="stat-icon">🌑</div>
+        <div class="stat-value">20:32:33</div>
+        <div class="stat-label">Hora exacta de la totalidad (CEST)</div>
+      </div>
+      <div class="eclipse-stat">
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-value">54 segundos</div>
+        <div class="stat-label">Duración de la totalidad en la capital</div>
+      </div>
+      <div class="eclipse-stat">
+        <div class="stat-icon">⛰️</div>
+        <div class="stat-value">~90 seg</div>
+        <div class="stat-label">Totalidad en la Serranía (Ciudad Encantada)</div>
+      </div>
+      <div class="eclipse-stat">
+        <div class="stat-icon">☀️</div>
+        <div class="stat-value">6° horizonte</div>
+        <div class="stat-label">El sol casi al atardecer — espectáculo único</div>
+      </div>
+      <div class="eclipse-stat">
+        <div class="stat-icon">🌍</div>
+        <div class="stat-value">Miles de</div>
+        <div class="stat-label">visitantes esperados de toda Europa y el mundo</div>
+      </div>
+    </div>
+
+    <div class="historical-note">
+      <div class="icon">📜</div>
+      <div>
+        <h3>Un momento que no se repite</h3>
+        <p>El último eclipse total visible desde Cuenca fue en <strong>1905</strong>. No hay nadie vivo en la ciudad que lo haya visto. El próximo eclipse total sobre Cuenca no llegará hasta <strong>2053</strong>. El 12 de agosto de 2026 es, literalmente, una vez en la vida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN DEL DÍA -->
+<section class="plan-section" id="plan">
+  <div class="container">
+    <div class="section-label">Guía del día</div>
+    <h2 class="section-title">El plan perfecto para el 12 de agosto</h2>
+    <p style="color:rgba(255,255,255,0.6); margin-bottom: 48px; max-width: 560px;">Llegues en AVE desde Madrid o en coche, así se saca el máximo partido al día del eclipse sin cargar con el equipaje.</p>
+
+    <div class="plan-steps">
+      <div class="plan-step">
+        <div class="step-dot"></div>
+        <div class="step-time">09:00–12:00</div>
+        <div class="step-content">
+          <h3>🚆 Llegas a Cuenca</h3>
+          <p>AVE desde Madrid Atocha: 1h 15min. Renfe prevé trenes especiales ese día.</p>
+        </div>
+      </div>
+      <div class="plan-step">
+        <div class="step-dot"></div>
+        <div class="step-time">12:00</div>
+        <div class="step-content">
+          <h3>🧳 Dejas las maletas en Locker Cuenca</h3>
+          <p>Taquillas en el centro histórico. En 5 minutos, manos libres.</p>
+        </div>
+      </div>
+      <div class="plan-step">
+        <div class="step-dot"></div>
+        <div class="step-time">12:30–15:00</div>
+        <div class="step-content">
+          <h3>🏛️ Exploras el casco histórico</h3>
+          <p>Casas Colgadas, Catedral, Puente de San Pablo, Museo de Arte Abstracto.</p>
+        </div>
+      </div>
+      <div class="plan-step">
+        <div class="step-dot"></div>
+        <div class="step-time">15:00–18:00</div>
+        <div class="step-content">
+          <h3>🍽️ Comes y descansas</h3>
+          <p>La gastronomía conquense merece atención: morteruelo, zarajos, queso manchego.</p>
+        </div>
+      </div>
+      <div class="plan-step">
+        <div class="step-dot"></div>
+        <div class="step-time">19:30</div>
+        <div class="step-content">
+          <h3>📍 Te posicionas en tu mirador</h3>
+          <p>El mirador de Mangana, el Castillo o el Cerro del Socorro. Con tiempo.</p>
+        </div>
+      </div>
+      <div class="plan-step">
+        <div class="step-dot highlight"></div>
+        <div class="step-time">20:32:33</div>
+        <div class="step-content eclipse-moment">
+          <h3>🌑 TOTALIDAD — 54 segundos</h3>
+          <p>El sol desaparece. Las estrellas aparecen. La corona solar brilla. El horizonte se enciende de naranja y rojo. Sin maletas. Solo tú y el eclipse.</p>
+        </div>
+      </div>
+      <div class="plan-step">
+        <div class="step-dot"></div>
+        <div class="step-time">21:00+</div>
+        <div class="step-content">
+          <h3>🧳 Recoge tus maletas y vuelves</h3>
+          <p>Pasas por Locker Cuenca, recoge el equipaje y tomas el tren de vuelta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MIRADORES -->
+<section class="miradores-section">
+  <div class="container">
+    <div class="section-label">Dónde verlo</div>
+    <h2 class="section-title">Los mejores miradores para el eclipse</h2>
+
+    <div class="miradores-grid">
+      <div class="mirador-card">
+        <div class="mirador-header">
+          <div class="mirador-name">Mirador de Mangana</div>
+          <div class="mirador-badge recomendado">⭐ Top</div>
+        </div>
+        <div class="mirador-body">
+          <div class="mirador-duration">54 seg totalidad</div>
+          <div class="mirador-desc">Vistas al oeste y al cañón del Júcar. Ideal para el eclipse al atardecer. En el corazón del casco histórico, a 5 min de la consigna.</div>
+        </div>
+      </div>
+      <div class="mirador-card">
+        <div class="mirador-header">
+          <div class="mirador-name">Castillo de Cuenca</div>
+          <div class="mirador-badge">360°</div>
+        </div>
+        <div class="mirador-body">
+          <div class="mirador-duration">54 seg totalidad</div>
+          <div class="mirador-desc">Punto elevado con horizonte abierto en todas las direcciones. Acceso público, zona histórica de la ciudad.</div>
+        </div>
+      </div>
+      <div class="mirador-card">
+        <div class="mirador-header">
+          <div class="mirador-name">Ciudad Encantada</div>
+          <div class="mirador-badge recomendado">Máxima totalidad</div>
+        </div>
+        <div class="mirador-body">
+          <div class="mirador-duration">~90 seg totalidad</div>
+          <div class="mirador-desc">En la Serranía. La mayor duración de totalidad. El Ayuntamiento habilitará aparcamientos y lanzaderas. Requiere moverse.</div>
+        </div>
+      </div>
+      <div class="mirador-card">
+        <div class="mirador-header">
+          <div class="mirador-name">Cerro del Socorro</div>
+          <div class="mirador-badge">Panorámico</div>
+        </div>
+        <div class="mirador-body">
+          <div class="mirador-duration">54 seg totalidad</div>
+          <div class="mirador-desc">Vistas panorámicas sobre la Hoz del Huécar y el casco antiguo. Combinación perfecta: eclipse + paisaje histórico.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSIGNA SECTION -->
+<section class="consigna-section" id="consigna">
+  <div class="container">
+    <div class="consigna-inner">
+      <div>
+        <div class="section-label">Locker Cuenca</div>
+        <h2 class="section-title">Guarda tus maletas.<br>Vive el eclipse.</h2>
+        <p>El 12 de agosto miles de personas llegan a Cuenca en AVE. Sin hotel. Con maletas. No dejes que el equipaje te quite ni un segundo de los 54 más importantes del año.</p>
+
+        <div class="consigna-features">
+          <div class="consigna-feature">
+            <div class="icon">📍</div>
+            <div class="text">En el centro histórico — a 5 min de las Casas Colgadas y los miradores principales</div>
+          </div>
+          <div class="consigna-feature">
+            <div class="icon">🔒</div>
+            <div class="text">Taquillas con cierre electrónico y código personal</div>
+          </div>
+          <div class="consigna-feature">
+            <div class="icon">📦</div>
+            <div class="text">Todos los tamaños: mochila, maleta de mano, maleta grande</div>
+          </div>
+          <div class="consigna-feature">
+            <div class="icon">⏰</div>
+            <div class="text">Horario ampliado el día del eclipse para cubrir todos los trenes</div>
+          </div>
+          <div class="consigna-feature">
+            <div class="icon">💳</div>
+            <div class="text">Pago en efectivo y tarjeta. Sin reserva previa (aunque recomendamos llegar con margen)</div>
+          </div>
+        </div>
+
+        <a href="tel:+34XXXXXXXXX" class="btn-primary">Llamar ahora</a>
+      </div>
+
+      <div class="pricing-card">
+        <h3>🧳 Tarifas consigna</h3>
+        <div class="price-row">
+          <span class="price-item">Mochila / bolso</span>
+          <span class="price-amount">X€ / día</span>
+        </div>
+        <div class="price-row">
+          <span class="price-item">Maleta de mano</span>
+          <span class="price-amount">X€ / día</span>
+        </div>
+        <div class="price-row">
+          <span class="price-item">Maleta grande</span>
+          <span class="price-amount">X€ / día</span>
+        </div>
+        <div class="price-row">
+          <span class="price-item">Tarifa por horas</span>
+          <span class="price-amount">X€ / hora</span>
+        </div>
+        <div class="price-note">Sin comisiones ocultas · El precio que ves es el que pagas</div>
+
+        <a href="#" style="display:block; background:var(--rojo); color:#fff; text-align:center; padding:14px; border-radius:10px; text-decoration:none; font-weight:800; margin-top:24px;">Ver disponibilidad</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2 class="section-title" style="margin-bottom: 40px;">Lo que preguntan sobre el eclipse</h2>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q">¿A qué hora exactamente es la totalidad en Cuenca? <span class="arrow">▾</span></div>
+        <div class="faq-a">La fase de totalidad comienza a las <strong>20:32:33</strong> (hora española CEST) y dura aproximadamente 54 segundos. Llega al mirador al menos 30 minutos antes para encontrar sitio.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Es necesario ir a la Serranía o basta el centro? <span class="arrow">▾</span></div>
+        <div class="faq-a">El eclipse es total en ambos casos. En la Serranía dura más (~90 segundos vs 54 en la capital), pero la capital tiene más servicios y no necesitas coche. Si tienes vehículo, la Ciudad Encantada merece el desplazamiento.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cuánta gente se espera en Cuenca ese día? <span class="arrow">▾</span></div>
+        <div class="faq-a">Se esperan decenas de miles de visitantes. El Ayuntamiento ha activado una Comisión especial para el eclipse. Organiza el transporte con antelación y llega a los miradores con margen de tiempo.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito gafas especiales para ver el eclipse? <span class="arrow">▾</span></div>
+        <div class="faq-a">Sí, durante las fases parciales (antes y después de la totalidad) son obligatorias las gafas con filtro ISO 12312-2. Solo durante los 54 segundos de totalidad es seguro mirar directamente sin protección.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cómo llegar a Cuenca desde Madrid el 12 de agosto? <span class="arrow">▾</span></div>
+        <div class="faq-a">El AVE desde Madrid Atocha tarda 1h 15min. Renfe está previendo trenes especiales para el día del eclipse. Consulta y reserva en la web oficial de Renfe con antelación — los billetes se agotarán.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Estará la consigna abierta el 12 de agosto? <span class="arrow">▾</span></div>
+        <div class="faq-a">Sí. En Locker Cuenca estaremos abiertos ese día con horario ampliado para cubrir la llegada de los primeros trenes hasta la salida de los últimos. Llama para confirmar el horario exacto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALERT BANNER -->
+<div class="alert-banner">
+  <h2>El eclipse es el 12 de agosto. Reserva tu taquilla.</h2>
+  <p>No dejes que las maletas te roben ni un segundo del eclipse más importante del siglo en Cuenca.</p>
+  <a href="tel:+34XXXXXXXXX" class="btn-white">Reservar ahora</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:12px;">
+    <a href="/consigna-equipaje-cuenca/">Consigna de Equipaje</a> ·
+    <a href="/como-llegar-cuenca-desde-madrid/">Cómo Llegar</a> ·
+    <a href="/guia-que-ver-en-cuenca/">Qué Ver en Cuenca</a> ·
+    <a href="/casas-colgadas-cuenca/">Casas Colgadas</a>
+  </p>
+  <p>© 2026 Locker Cuenca · [Dirección], Cuenca · <a href="tel:+34XXXXXXXXX">[Teléfono]</a></p>
+</footer>
+
+<script>
+  // Countdown to August 12, 2026 at 20:32:33 CEST (UTC+2)
+  const eclipseDate = new Date('2026-08-12T20:32:33+02:00');
+  function updateCountdown() {
+    const now = new Date();
+    const diff = eclipseDate - now;
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML = '<div style="color:var(--dorado);font-size:1.5rem;font-weight:900;">¡El eclipse es AHORA!</div>';
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const secs = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(mins).padStart(2,'0');
+    document.getElementById('cd-sec').textContent = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>

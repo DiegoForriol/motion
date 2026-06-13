@@ -3,331 +3,345 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Empresas Colaboradoras | Motion Cuenca</title>
+  <title>Empresas Colaboradoras | Loker Cuenca</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { font-family: 'Inter', sans-serif; background: #f8f8f6; }
     .font-display { font-family: 'Playfair Display', serif; }
 
-    .card-hover {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card-hover:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 24px 48px rgba(0,0,0,0.15);
+    .card-hover { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 28px 56px rgba(0,0,0,0.13); }
+
+    .hero-bg {
+      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 60%, #0f2027 100%);
     }
 
-    .badge-pill {
-      background: linear-gradient(135deg, #d4a843, #f0c060);
-      color: #1a1a1a;
-    }
-
-    .hero-gradient {
-      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
-    }
-
-    .section-line::after {
-      content: '';
+    /* Imagen de cabecera de cada card */
+    .card-img {
+      height: 240px;
+      object-fit: cover;
+      width: 100%;
       display: block;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, #d4a843, #f0c060);
-      margin: 16px auto 0;
-      border-radius: 2px;
     }
 
-    .benefit-tag {
-      background: linear-gradient(135deg, #d4a843 0%, #f0c060 100%);
-      color: #111;
-      font-weight: 600;
+    /* Overlay oscuro sobre la imagen */
+    .img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
     }
 
-    .company-img-placeholder {
-      background: linear-gradient(135deg, #1e1e2e, #2a2a3e);
+    .gold-gradient { background: linear-gradient(135deg, #c9953a, #f0c060); }
+    .gold-text { background: linear-gradient(90deg, #d4a843, #f0c060); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .badge-gold { background: linear-gradient(135deg, #c9953a, #f0c060); color: #1a1a1a; font-weight: 700; }
+
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 700;
+      border: 2px solid #e8c46a; color: #c9953a; background: #fffbf0;
+      flex-shrink: 0;
     }
 
-    .icon-circle {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-    }
-
-    /* Animación suave en entrada */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(28px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .animate-fadeup {
-      animation: fadeUp 0.6s ease forwards;
-    }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.25s; }
-    .delay-3 { animation-delay: 0.4s; }
+    .fade-1 { animation: fadeUp 0.6s ease 0.05s both; }
+    .fade-2 { animation: fadeUp 0.6s ease 0.2s both; }
+    .fade-3 { animation: fadeUp 0.6s ease 0.35s both; }
+
+    .tag { background: #f0f0ec; color: #555; font-size: 0.72rem; padding: 4px 10px; border-radius: 20px; }
+
+    .benefit-box { border-left: 3px solid #d4a843; }
+
+    /* Número grande decorativo */
+    .big-num { font-size: 4rem; font-weight: 800; line-height: 1; color: #e8c46a; opacity: 0.18; position: absolute; top: -10px; left: 12px; font-family: 'Inter', sans-serif; }
   </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-  <!-- NAVBAR -->
-  <nav class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+  <!-- ══════════════ NAVBAR ══════════════ -->
+  <nav style="background:#fff; border-bottom:1px solid #eee;" class="sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="/" class="font-display text-2xl font-bold text-gray-900 tracking-tight">
-        Motion<span class="text-yellow-500">.</span>
+        Loker<span style="color:#d4a843">.</span>
       </a>
-      <a
-        href="/reservar"
-        class="bg-gray-900 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-gray-700 transition"
-      >
+      <a href="/reservar" class="text-sm font-semibold px-5 py-2.5 rounded-full text-white transition"
+         style="background:#1a1a1a; hover:background:#333;">
         Reservar ahora
       </a>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero-gradient text-white py-24 px-6">
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="hero-bg text-white py-28 px-6">
     <div class="max-w-4xl mx-auto text-center">
-      <span class="inline-block bg-yellow-500/20 text-yellow-400 text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
-        Exclusivo para clientes Motion
+      <span class="inline-block text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-7"
+            style="background:rgba(212,168,67,0.15); color:#e8c46a; border:1px solid rgba(212,168,67,0.3);">
+        ✦ Exclusivo para clientes de Loker Cuenca
       </span>
-      <h1 class="font-display text-5xl md:text-6xl font-bold leading-tight mb-6">
+      <h1 class="font-display mb-6 leading-tight" style="font-size: clamp(2.5rem, 6vw, 4rem); font-weight:700;">
         Empresas<br/>
-        <span style="background: linear-gradient(90deg, #d4a843, #f0c060); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-          Colaboradoras
-        </span>
+        <span class="gold-text">Colaboradoras</span>
       </h1>
-      <p class="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-        Al reservar con nosotros, accedes a ventajas exclusivas en los mejores negocios de Cuenca.
-        Regalos, descuentos y experiencias únicas esperan por ti.
+      <p class="text-gray-300 leading-relaxed max-w-2xl mx-auto" style="font-size:1.125rem;">
+        Reserva tu experiencia con nosotros y desbloquea ventajas exclusivas en los mejores
+        negocios de Cuenca: copas, aventura y arte, todo en un mismo plan.
       </p>
 
-      <!-- Stats -->
-      <div class="flex items-center justify-center gap-10 mt-12">
+      <div class="flex items-center justify-center gap-12 mt-14">
         <div class="text-center">
-          <p class="text-3xl font-bold text-yellow-400">3</p>
+          <p class="font-display font-bold" style="font-size:2.25rem; color:#e8c46a;">3</p>
           <p class="text-gray-400 text-sm mt-1">Colaboradores</p>
         </div>
-        <div class="w-px h-10 bg-gray-700"></div>
+        <div style="width:1px; height:40px; background:#333;"></div>
         <div class="text-center">
-          <p class="text-3xl font-bold text-yellow-400">100%</p>
-          <p class="text-gray-400 text-sm mt-1">Gratis para ti</p>
+          <p class="font-display font-bold" style="font-size:2.25rem; color:#e8c46a;">100%</p>
+          <p class="text-gray-400 text-sm mt-1">Sin coste extra</p>
         </div>
-        <div class="w-px h-10 bg-gray-700"></div>
+        <div style="width:1px; height:40px; background:#333;"></div>
         <div class="text-center">
-          <p class="text-3xl font-bold text-yellow-400">∞</p>
+          <p class="font-display font-bold" style="font-size:2.25rem; color:#e8c46a;">∞</p>
           <p class="text-gray-400 text-sm mt-1">Experiencias</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA -->
-  <section class="bg-white py-16 px-6 border-b border-gray-100">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="font-display text-2xl font-bold text-gray-900 section-line mb-12">¿Cómo funciona?</h2>
+  <!-- ══════════════ CÓMO FUNCIONA ══════════════ -->
+  <section style="background:#fff; border-bottom:1px solid #eee;" class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-display text-center font-bold text-gray-900 mb-12" style="font-size:1.75rem;">
+        ¿Cómo funciona?
+      </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="flex flex-col items-center text-center">
-          <div class="icon-circle bg-yellow-50 text-yellow-600 text-2xl mb-4 font-bold border-2 border-yellow-200">1</div>
+
+        <div class="flex flex-col items-center text-center relative">
+          <div class="step-num mb-4">1</div>
           <h3 class="font-semibold text-gray-900 mb-2">Haz tu reserva</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Reserva cualquier experiencia con Motion Cuenca de forma normal.</p>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            Reserva cualquier experiencia en Loker Cuenca de forma normal, como siempre.
+          </p>
         </div>
-        <div class="flex flex-col items-center text-center">
-          <div class="icon-circle bg-yellow-50 text-yellow-600 text-2xl mb-4 font-bold border-2 border-yellow-200">2</div>
-          <h3 class="font-semibold text-gray-900 mb-2">Recibe tu código</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Te enviamos un código o QR exclusivo con la confirmación de tu reserva.</p>
+
+        <div class="flex flex-col items-center text-center relative">
+          <div class="step-num mb-4">2</div>
+          <h3 class="font-semibold text-gray-900 mb-2">Recibe tu código QR</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            Con la confirmación de reserva te enviamos un código QR personal con todos tus beneficios.
+          </p>
         </div>
-        <div class="flex flex-col items-center text-center">
-          <div class="icon-circle bg-yellow-50 text-yellow-600 text-2xl mb-4 font-bold border-2 border-yellow-200">3</div>
-          <h3 class="font-semibold text-gray-900 mb-2">Disfruta los beneficios</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Muéstralo en cualquiera de nuestros colaboradores y disfruta tu regalo.</p>
+
+        <div class="flex flex-col items-center text-center relative">
+          <div class="step-num mb-4">3</div>
+          <h3 class="font-semibold text-gray-900 mb-2">Disfruta los regalos</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">
+            Muestra el QR en cualquiera de nuestros colaboradores y disfruta tu beneficio exclusivo.
+          </p>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- EMPRESAS COLABORADORAS -->
-  <section class="py-20 px-6 bg-gray-50">
+  <!-- ══════════════ CARDS DE EMPRESAS ══════════════ -->
+  <section class="py-20 px-6" style="background:#f8f8f6;">
     <div class="max-w-6xl mx-auto">
-      <h2 class="font-display text-3xl font-bold text-gray-900 text-center section-line mb-16">Nuestros Colaboradores</h2>
+      <h2 class="font-display text-center font-bold text-gray-900 mb-4" style="font-size:2rem;">
+        Nuestros Colaboradores
+      </h2>
+      <p class="text-center text-gray-500 mb-14 text-sm">Solo tienes que mostrar tu QR de reserva</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-        <!-- CARD 1: Flow Bar -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md card-hover animate-fadeup delay-1">
-          <!-- Imagen/color de cabecera -->
-          <div class="h-52 company-img-placeholder relative flex items-center justify-center"
-               style="background: linear-gradient(135deg, #1a0533, #3d0f6b);">
-            <div class="text-center">
-              <div class="text-6xl mb-2">🍸</div>
-              <p class="text-purple-200 text-xs font-medium tracking-widest uppercase">Bar de Copas</p>
-            </div>
-            <!-- Badge beneficio -->
+        <!-- ── CARD 1: Flow Bar ── -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover fade-1">
+
+          <!-- Imagen real: coctelería / bar de noche -->
+          <div class="relative" style="height:240px; overflow:hidden;">
+            <img
+              src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80&fit=crop&auto=format"
+              alt="Flow Bar Cuenca - Bar de copas"
+              class="card-img"
+              loading="lazy"
+            />
+            <div class="img-overlay"></div>
+            <!-- Badge beneficio encima de la foto -->
             <div class="absolute top-4 right-4">
-              <span class="benefit-tag text-xs px-3 py-1.5 rounded-full shadow">
-                🎁 Copa gratis
+              <span class="badge-gold text-xs px-3 py-1.5 rounded-full shadow-lg">
+                🥂 Copa gratis
               </span>
+            </div>
+            <!-- Nombre encima de la foto -->
+            <div class="absolute bottom-0 left-0 right-0 p-5">
+              <p class="text-white/70 text-xs font-medium tracking-widest uppercase mb-1">Bar de Copas · Cuenca</p>
+              <h3 class="font-display text-white font-bold" style="font-size:1.5rem;">Flow Bar</h3>
             </div>
           </div>
 
-          <!-- Contenido -->
+          <!-- Contenido de la card -->
           <div class="p-6">
-            <div class="flex items-start justify-between mb-3">
-              <div>
-                <h3 class="font-display text-xl font-bold text-gray-900">Flow Bar</h3>
-                <p class="text-gray-400 text-sm">Cuenca · Bar de Copas</p>
+            <p class="text-gray-600 text-sm leading-relaxed mb-5">
+              El rincón perfecto para cerrar la noche en Cuenca. Cócteles artesanales,
+              ambiente íntimo y la música justa para que el momento dure más de lo que debería.
+            </p>
+
+            <!-- Beneficio -->
+            <div class="benefit-box bg-amber-50 rounded-xl p-4 mb-5">
+              <p class="text-xs font-bold uppercase tracking-wide mb-1" style="color:#c9953a;">Tu regalo exclusivo</p>
+              <p class="text-gray-800 font-semibold text-sm">
+                🥂 Copa de bienvenida gratis al mostrar tu QR de Loker
+              </p>
+            </div>
+
+            <!-- Tags + Instagram -->
+            <div class="flex items-center justify-between">
+              <div class="flex gap-2 flex-wrap">
+                <span class="tag">Cócteles</span>
+                <span class="tag">Noche</span>
               </div>
-              <a href="https://www.instagram.com/flowbarcuenca" target="_blank"
-                 class="text-purple-500 hover:text-purple-700 transition text-sm flex items-center gap-1">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <a href="https://www.instagram.com/flowbarcuenca" target="_blank" rel="noopener"
+                 class="text-xs text-gray-400 hover:text-gray-700 transition flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
                 </svg>
                 @flowbarcuenca
               </a>
             </div>
-
-            <p class="text-gray-600 text-sm leading-relaxed mb-5">
-              El spot de referencia para disfrutar una noche especial en Cuenca. Cócteles artesanales,
-              ambiente único y la mejor música para cerrar el día con estilo.
-            </p>
-
-            <!-- Beneficio destacado -->
-            <div class="bg-purple-50 border border-purple-100 rounded-xl p-4 mb-5">
-              <p class="text-xs font-semibold text-purple-700 uppercase tracking-wide mb-1">Tu beneficio exclusivo</p>
-              <p class="text-gray-800 font-semibold text-sm">🥂 Copa de bienvenida gratis con tu reserva Motion</p>
-            </div>
-
-            <!-- Tags -->
-            <div class="flex flex-wrap gap-2">
-              <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Cócteles</span>
-              <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Noche</span>
-              <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Cuenca ciudad</span>
-            </div>
           </div>
         </div>
 
-        <!-- CARD 2: Tirolina Las Hoces -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md card-hover animate-fadeup delay-2">
-          <div class="h-52 relative flex items-center justify-center"
-               style="background: linear-gradient(135deg, #0a2a0a, #1a5c1a);">
-            <div class="text-center">
-              <div class="text-6xl mb-2">🏔️</div>
-              <p class="text-green-200 text-xs font-medium tracking-widest uppercase">Aventura</p>
-            </div>
+        <!-- ── CARD 2: Tirolina Las Hoces ── -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover fade-2">
+
+          <!-- Imagen: tirolina / aventura natural -->
+          <div class="relative" style="height:240px; overflow:hidden;">
+            <img
+              src="https://images.unsplash.com/photo-1530655638484-8dc67f03e4f5?w=800&q=80&fit=crop&auto=format"
+              alt="Tirolina Las Hoces de Cuenca"
+              class="card-img"
+              loading="lazy"
+            />
+            <div class="img-overlay"></div>
             <div class="absolute top-4 right-4">
-              <span class="benefit-tag text-xs px-3 py-1.5 rounded-full shadow">
+              <span class="badge-gold text-xs px-3 py-1.5 rounded-full shadow-lg">
                 🎟️ 10% descuento
               </span>
             </div>
-            <!-- Badge "La más larga de Europa" -->
-            <div class="absolute bottom-4 left-4">
-              <span class="bg-black/50 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
+            <div class="absolute top-4 left-4">
+              <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
+                    style="background:rgba(0,0,0,0.5); color:#fff; backdrop-filter:blur(4px);">
                 🏆 La más larga de Europa
               </span>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-5">
+              <p class="text-white/70 text-xs font-medium tracking-widest uppercase mb-1">Aventura · Cuenca</p>
+              <h3 class="font-display text-white font-bold" style="font-size:1.5rem;">Tirolina Las Hoces</h3>
             </div>
           </div>
 
           <div class="p-6">
-            <div class="flex items-start justify-between mb-3">
-              <div>
-                <h3 class="font-display text-xl font-bold text-gray-900">Tirolina Las Hoces</h3>
-                <p class="text-gray-400 text-sm">Cuenca · Aventura</p>
-              </div>
-              <a href="https://www.tirolinacuenca.com" target="_blank"
-                 class="text-green-600 hover:text-green-800 transition text-xs font-medium underline">
-                Web oficial
-              </a>
-            </div>
-
-            <p class="text-gray-600 text-sm leading-relaxed mb-5">
-              Vuela sobre las Hoces del Huécar a 120 metros de altura y 70 km/h durante 40 segundos
-              de pura adrenalina. Vistas únicas de Cuenca Patrimonio de la Humanidad. La tirolina
-              urbana más larga de Europa.
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Vuela sobre las Hoces del Huécar a 120 metros de altura y 70 km/h.
+              445 metros de adrenalina pura sobre Cuenca Patrimonio de la Humanidad.
+              Una experiencia que no olvidarás.
             </p>
 
             <!-- Stats rápidos -->
-            <div class="grid grid-cols-3 gap-3 mb-5">
-              <div class="bg-green-50 rounded-xl p-2.5 text-center">
-                <p class="text-green-700 font-bold text-lg">445m</p>
-                <p class="text-gray-500 text-xs">Longitud</p>
+            <div class="grid grid-cols-3 gap-2 mb-5">
+              <div class="rounded-xl p-2.5 text-center" style="background:#f0faf0;">
+                <p class="font-bold" style="color:#2a7a2a; font-size:1.1rem;">445m</p>
+                <p class="text-gray-500" style="font-size:0.65rem;">Longitud</p>
               </div>
-              <div class="bg-green-50 rounded-xl p-2.5 text-center">
-                <p class="text-green-700 font-bold text-lg">70km/h</p>
-                <p class="text-gray-500 text-xs">Velocidad</p>
+              <div class="rounded-xl p-2.5 text-center" style="background:#f0faf0;">
+                <p class="font-bold" style="color:#2a7a2a; font-size:1.1rem;">70km/h</p>
+                <p class="text-gray-500" style="font-size:0.65rem;">Velocidad</p>
               </div>
-              <div class="bg-green-50 rounded-xl p-2.5 text-center">
-                <p class="text-green-700 font-bold text-lg">120m</p>
-                <p class="text-gray-500 text-xs">Altura</p>
+              <div class="rounded-xl p-2.5 text-center" style="background:#f0faf0;">
+                <p class="font-bold" style="color:#2a7a2a; font-size:1.1rem;">120m</p>
+                <p class="text-gray-500" style="font-size:0.65rem;">Altura</p>
               </div>
             </div>
 
             <!-- Beneficio -->
-            <div class="bg-green-50 border border-green-100 rounded-xl p-4 mb-5">
-              <p class="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">Tu beneficio exclusivo</p>
-              <p class="text-gray-800 font-semibold text-sm">🎟️ 10% de descuento en tu entrada con reserva Motion</p>
+            <div class="benefit-box bg-green-50 rounded-xl p-4 mb-5">
+              <p class="text-xs font-bold uppercase tracking-wide mb-1" style="color:#2a7a2a;">Tu regalo exclusivo</p>
+              <p class="text-gray-800 font-semibold text-sm">
+                🎟️ 10% de descuento en tu entrada al mostrar el QR
+              </p>
             </div>
 
-            <div class="flex flex-wrap gap-2">
-              <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Adrenalina</span>
-              <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Naturaleza</span>
-              <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Vistas UNESCO</span>
+            <div class="flex items-center justify-between">
+              <div class="flex gap-2 flex-wrap">
+                <span class="tag">Adrenalina</span>
+                <span class="tag">Naturaleza</span>
+              </div>
+              <a href="https://www.tirolinacuenca.com" target="_blank" rel="noopener"
+                 class="text-xs text-gray-400 hover:text-gray-700 transition">
+                tirolinacuenca.com ↗
+              </a>
             </div>
           </div>
         </div>
 
-        <!-- CARD 3: Galería Juana Romero -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-md card-hover animate-fadeup delay-3">
-          <div class="h-52 relative flex items-center justify-center"
-               style="background: linear-gradient(135deg, #1a0f0a, #3d2010);">
-            <div class="text-center">
-              <div class="text-6xl mb-2">🖼️</div>
-              <p class="text-orange-200 text-xs font-medium tracking-widest uppercase">Arte Contemporáneo</p>
-            </div>
+        <!-- ── CARD 3: Galería Juana Romero ── -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover fade-3">
+
+          <!-- Imagen: galería de arte -->
+          <div class="relative" style="height:240px; overflow:hidden;">
+            <img
+              src="https://images.unsplash.com/photo-1577083552792-a0d461cb1dd6?w=800&q=80&fit=crop&auto=format"
+              alt="Galería de Arte Juana Romero Cuenca"
+              class="card-img"
+              loading="lazy"
+            />
+            <div class="img-overlay"></div>
             <div class="absolute top-4 right-4">
-              <span class="benefit-tag text-xs px-3 py-1.5 rounded-full shadow">
+              <span class="badge-gold text-xs px-3 py-1.5 rounded-full shadow-lg">
                 🎨 Entrada libre
               </span>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-5">
+              <p class="text-white/70 text-xs font-medium tracking-widest uppercase mb-1">Arte Contemporáneo · Cuenca</p>
+              <h3 class="font-display text-white font-bold" style="font-size:1.5rem;">Galería Juana Romero</h3>
             </div>
           </div>
 
           <div class="p-6">
-            <div class="flex items-start justify-between mb-3">
-              <div>
-                <h3 class="font-display text-xl font-bold text-gray-900">Galería Juana Romero</h3>
-                <p class="text-gray-400 text-sm">Cuenca · Arte Moderno y Contemporáneo</p>
-              </div>
-              <a href="https://juanaromero.art" target="_blank"
-                 class="text-orange-600 hover:text-orange-800 transition text-xs font-medium underline">
-                Web oficial
-              </a>
-            </div>
-
-            <p class="text-gray-600 text-sm leading-relaxed mb-5">
-              Galería internacional de arte moderno y contemporáneo en el corazón de Cuenca.
-              Obras de Zóbel, Saura, Canogar y artistas actuales. Exposiciones temporales,
-              visitas guiadas y encuentros con artistas. Calle Alonso Chirino 7.
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Arte moderno y contemporáneo en el corazón de Cuenca. Obras de Zóbel, Saura,
+              Canogar y artistas actuales. Exposiciones temporales, visitas guiadas
+              y encuentros con artistas. C/ Alonso Chirino 7.
             </p>
 
-            <!-- Artistas destacados -->
-            <div class="bg-orange-50 rounded-xl p-3 mb-4">
-              <p class="text-xs font-semibold text-orange-700 uppercase tracking-wide mb-2">Artistas en galería</p>
+            <!-- Artistas -->
+            <div class="rounded-xl p-3 mb-4" style="background:#fdf8f0;">
+              <p class="text-xs font-bold uppercase tracking-wide mb-1.5" style="color:#8b5e2a;">Artistas en galería</p>
               <p class="text-gray-700 text-xs leading-relaxed">
-                Fernando Zóbel · Antonio Saura · Rafael Canogar · Equipo Crónica · Diego Forriol · y más
+                Zóbel · Saura · Canogar · Equipo Crónica · Diego Forriol · Emilio Cárdenas · y más
               </p>
             </div>
 
             <!-- Beneficio -->
-            <div class="bg-orange-50 border border-orange-100 rounded-xl p-4 mb-5">
-              <p class="text-xs font-semibold text-orange-700 uppercase tracking-wide mb-1">Tu beneficio exclusivo</p>
-              <p class="text-gray-800 font-semibold text-sm">🎨 Entrada gratuita + visita guiada con reserva Motion</p>
+            <div class="benefit-box bg-orange-50 rounded-xl p-4 mb-5">
+              <p class="text-xs font-bold uppercase tracking-wide mb-1" style="color:#8b5e2a;">Tu regalo exclusivo</p>
+              <p class="text-gray-800 font-semibold text-sm">
+                🎨 Entrada gratuita + visita guiada con tu QR de Loker
+              </p>
             </div>
 
-            <div class="flex flex-wrap gap-2">
-              <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Arte contemporáneo</span>
-              <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Internacional</span>
-              <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full">Cuenca</span>
+            <div class="flex items-center justify-between">
+              <div class="flex gap-2 flex-wrap">
+                <span class="tag">Arte moderno</span>
+                <span class="tag">Internacional</span>
+              </div>
+              <a href="https://juanaromero.art" target="_blank" rel="noopener"
+                 class="text-xs text-gray-400 hover:text-gray-700 transition">
+                juanaromero.art ↗
+              </a>
             </div>
           </div>
         </div>
@@ -336,30 +350,65 @@
     </div>
   </section>
 
-  <!-- CTA FINAL -->
-  <section class="hero-gradient py-20 px-6 text-white">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="font-display text-4xl font-bold mb-4">
-        ¿Listo para disfrutar Cuenca al máximo?
-      </h2>
-      <p class="text-gray-300 text-lg mb-10">
-        Reserva tu experiencia con Motion y desbloquea todos estos beneficios exclusivos automáticamente.
-      </p>
-      <a
-        href="/reservar"
-        class="inline-block bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold text-lg px-10 py-4 rounded-full transition shadow-lg hover:shadow-yellow-500/30"
-      >
-        Reservar ahora →
-      </a>
-      <p class="text-gray-500 text-sm mt-4">Sin coste adicional · Los beneficios llegan con tu confirmación</p>
+  <!-- ══════════════ MAPA / UBICACIONES ══════════════ -->
+  <section class="py-16 px-6" style="background:#fff; border-top:1px solid #eee;">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="font-display font-bold text-gray-900 mb-3" style="font-size:1.75rem;">Todo en Cuenca</h2>
+      <p class="text-gray-500 text-sm mb-10">Nuestros colaboradores están todos en el centro histórico</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+        <div class="flex items-start gap-3 p-4 rounded-xl" style="background:#fafafa; border:1px solid #eee;">
+          <span class="text-2xl mt-0.5">🍸</span>
+          <div>
+            <p class="font-semibold text-gray-900 text-sm">Flow Bar</p>
+            <p class="text-gray-500 text-xs mt-1">Cuenca ciudad · Ver en Instagram</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl" style="background:#fafafa; border:1px solid #eee;">
+          <span class="text-2xl mt-0.5">🏔️</span>
+          <div>
+            <p class="font-semibold text-gray-900 text-sm">Tirolina Las Hoces</p>
+            <p class="text-gray-500 text-xs mt-1">Barrio del Castillo · Cuenca</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl" style="background:#fafafa; border:1px solid #eee;">
+          <span class="text-2xl mt-0.5">🖼️</span>
+          <div>
+            <p class="font-semibold text-gray-900 text-sm">Galería Juana Romero</p>
+            <p class="text-gray-500 text-xs mt-1">C/ Alonso Chirino 7 · Cuenca</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-gray-900 text-gray-500 py-8 px-6 text-center text-sm">
-    <p class="font-display text-white text-lg font-bold mb-2">Motion<span class="text-yellow-500">.</span></p>
-    <p>Cuenca, España · <a href="mailto:hola@motioncuenca.com" class="hover:text-gray-300 transition">hola@motioncuenca.com</a></p>
-    <p class="mt-4 text-xs">© 2026 Motion Cuenca. Todos los derechos reservados.</p>
+  <!-- ══════════════ CTA FINAL ══════════════ -->
+  <section class="hero-bg py-24 px-6 text-white">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-display font-bold mb-4" style="font-size: clamp(1.8rem, 4vw, 2.75rem);">
+        ¿Listo para disfrutar Cuenca al máximo?
+      </h2>
+      <p class="text-gray-300 mb-10 leading-relaxed">
+        Una reserva, tres experiencias extra. Copas, adrenalina y arte incluidos,
+        sin pagar nada más.
+      </p>
+      <a href="/reservar"
+         class="inline-block font-bold text-gray-900 px-10 py-4 rounded-full transition shadow-xl"
+         style="background: linear-gradient(135deg, #c9953a, #f0c060); font-size:1.05rem;">
+        Reservar ahora →
+      </a>
+      <p class="text-gray-600 text-xs mt-5">Los beneficios llegan automáticamente con tu confirmación de reserva</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer style="background:#0d0d0d; color:#666;" class="py-10 px-6 text-center text-sm">
+    <p class="font-display text-white font-bold text-xl mb-2">Loker<span style="color:#d4a843">.</span></p>
+    <p>Cuenca, España</p>
+    <p class="mt-1">
+      <a href="https://lokercuenca.es" class="hover:text-gray-300 transition">lokercuenca.es</a>
+    </p>
+    <p class="mt-5 text-xs" style="color:#444;">© 2026 Loker Cuenca. Todos los derechos reservados.</p>
   </footer>
 
 </body>

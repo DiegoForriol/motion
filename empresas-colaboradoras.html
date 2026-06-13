@@ -3,345 +3,596 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Empresas Colaboradoras | Loker Cuenca</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <title>Empresas Colaboradoras | Locker Cuenca</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Inter', sans-serif; background: #f8f8f6; }
-    .font-display { font-family: 'Playfair Display', serif; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .card-hover { transition: transform 0.35s ease, box-shadow 0.35s ease; }
-    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 28px 56px rgba(0,0,0,0.13); }
-
-    .hero-bg {
-      background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 60%, #0f2027 100%);
+    :root {
+      --navy:   #1a3a5c;
+      --amber:  #d4863a;
+      --white:  #ffffff;
+      --bg:     #f9f9f9;
+      --border: #e8e8e8;
+      --text:   #1a1a1a;
+      --muted:  #666;
     }
 
-    /* Imagen de cabecera de cada card */
-    .card-img {
-      height: 240px;
-      object-fit: cover;
-      width: 100%;
-      display: block;
+    body { font-family: 'Nunito', sans-serif; background: var(--white); color: var(--text); }
+
+    /* ── NAV ── */
+    .nav-top {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-
-    /* Overlay oscuro sobre la imagen */
-    .img-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
     }
+    .logo-icon {
+      background: var(--navy);
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.1rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: -1px;
+    }
+    .logo-text { line-height: 1.1; }
+    .logo-text strong { display: block; font-size: 0.95rem; font-weight: 900; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; }
+    .logo-text span  { font-size: 0.7rem; color: var(--muted); font-weight: 600; }
 
-    .gold-gradient { background: linear-gradient(135deg, #c9953a, #f0c060); }
-    .gold-text { background: linear-gradient(90deg, #d4a843, #f0c060); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+    .nav-info a { color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 4px; font-weight: 600; }
+    .nav-info a:hover { color: var(--navy); }
 
-    .badge-gold { background: linear-gradient(135deg, #c9953a, #f0c060); color: #1a1a1a; font-weight: 700; }
+    .nav-bottom {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .hamburger { font-size: 1.3rem; color: var(--navy); cursor: pointer; }
 
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .location-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 480px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+      border: 2px solid var(--navy);
+      padding: 11px 24px;
+      border-radius: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.5);
+      padding: 11px 24px;
+      border-radius: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s;
+    }
+    .btn-outline:hover { border-color: #fff; }
+
+    .btn-amber {
+      background: var(--amber);
+      color: #fff;
+      border: 2px solid var(--amber);
+      padding: 11px 28px;
+      border-radius: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .btn-amber:hover { opacity: 0.9; }
+
+    /* ── STATS (como las 3 columnas de iconos) ── */
+    .features {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 20px;
+    }
+    .features-grid {
+      max-width: 700px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .feature-item {
+      text-align: center;
+      padding: 16px 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--white);
+    }
+    .feature-icon { font-size: 1.6rem; margin-bottom: 6px; }
+    .feature-label { font-weight: 800; font-size: 0.85rem; color: var(--navy); display: block; }
+    .feature-sub   { font-size: 0.72rem; color: var(--muted); margin-top: 2px; display: block; }
+
+    /* ── SECCIÓN CÓMO FUNCIONA ── */
+    .section { padding: 48px 20px; }
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 24px; }
+
+    .steps-grid {
+      max-width: 720px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .step-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+      background: var(--white);
+    }
     .step-num {
-      width: 48px; height: 48px; border-radius: 50%;
+      width: 36px; height: 36px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 50%;
+      font-weight: 900;
+      font-size: 0.9rem;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; font-weight: 700;
-      border: 2px solid #e8c46a; color: #c9953a; background: #fffbf0;
-      flex-shrink: 0;
+      margin: 0 auto 10px;
+    }
+    .step-card h3 { font-size: 0.88rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
+    .step-card p  { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── CARDS EMPRESAS ── */
+    .companies-section {
+      background: var(--bg);
+      padding: 48px 20px;
+      border-top: 1px solid var(--border);
+    }
+    .companies-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    .company-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .company-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.09); transform: translateY(-3px); }
+
+    .company-img-wrap { position: relative; height: 190px; overflow: hidden; }
+    .company-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .company-img-wrap .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(26,58,92,0.65) 100%);
+    }
+    .company-img-wrap .img-name {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 14px 16px;
+      color: #fff;
+    }
+    .company-img-wrap .img-name .category {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 2px;
+    }
+    .company-img-wrap .img-name h3 { font-size: 1.1rem; font-weight: 900; line-height: 1.2; }
+
+    .badge-popular {
+      position: absolute; top: 12px; right: 12px;
+      background: var(--amber);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 50px;
+    }
+    .badge-europe {
+      position: absolute; top: 12px; left: 12px;
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 50px;
+      backdrop-filter: blur(4px);
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .company-body { padding: 18px 16px; }
+    .company-body p {
+      font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px;
     }
-    .fade-1 { animation: fadeUp 0.6s ease 0.05s both; }
-    .fade-2 { animation: fadeUp 0.6s ease 0.2s both; }
-    .fade-3 { animation: fadeUp 0.6s ease 0.35s both; }
 
-    .tag { background: #f0f0ec; color: #555; font-size: 0.72rem; padding: 4px 10px; border-radius: 20px; }
+    /* Caja beneficio — igual que las cajas de precios de la web */
+    .benefit-box {
+      border: 2px solid var(--navy);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .benefit-box .benefit-label {
+      font-size: 0.65rem; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 4px;
+    }
+    .benefit-box .benefit-text {
+      font-size: 0.88rem; font-weight: 800; color: var(--navy);
+    }
 
-    .benefit-box { border-left: 3px solid #d4a843; }
+    /* Stats mini (Tirolina) */
+    .mini-stats { display: flex; gap: 8px; margin-bottom: 14px; }
+    .mini-stat {
+      flex: 1; border: 1px solid var(--border); border-radius: 8px;
+      padding: 8px 4px; text-align: center;
+    }
+    .mini-stat strong { display: block; font-size: 0.85rem; font-weight: 900; color: var(--navy); }
+    .mini-stat span   { font-size: 0.65rem; color: var(--muted); }
 
-    /* Número grande decorativo */
-    .big-num { font-size: 4rem; font-weight: 800; line-height: 1; color: #e8c46a; opacity: 0.18; position: absolute; top: -10px; left: 12px; font-family: 'Inter', sans-serif; }
+    /* Tags */
+    .tags { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+    .tag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+    .tag-link { font-size: 0.72rem; color: var(--navy); font-weight: 700; text-decoration: none; }
+    .tag-link:hover { text-decoration: underline; }
+
+    /* ── ARTISTAS (galería) ── */
+    .artists-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+    }
+    .artists-box .artists-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--amber); margin-bottom: 4px; }
+    .artists-box p { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── UBICACIONES ── */
+    .locations-section {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 40px 20px;
+    }
+    .locations-grid {
+      max-width: 720px;
+      margin: 24px auto 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .location-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      background: var(--bg);
+    }
+    .location-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .location-item strong { display: block; font-size: 0.85rem; font-weight: 800; color: var(--navy); margin-bottom: 2px; }
+    .location-item span  { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      background: var(--navy);
+      color: #fff;
+      text-align: center;
+      padding: 56px 20px;
+    }
+    .cta-section h2 { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 900; margin-bottom: 10px; }
+    .cta-section p  { font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-bottom: 28px; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .cta-note { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 14px; }
+
+    /* ── WHATSAPP FLOAT ── */
+    .whatsapp-float {
+      position: fixed; bottom: 20px; right: 20px; z-index: 99;
+      background: #25D366; color: #fff;
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      text-decoration: none;
+      font-size: 1.4rem;
+      transition: transform 0.2s;
+    }
+    .whatsapp-float:hover { transform: scale(1.08); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      color: #888;
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.78rem;
+    }
+    footer strong { color: #fff; display: block; font-size: 1rem; font-weight: 900; margin-bottom: 6px; letter-spacing: 1px; }
+    footer a { color: #aaa; text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .nav-info { gap: 12px; }
+      .features-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ══════════════ NAVBAR ══════════════ -->
-  <nav style="background:#fff; border-bottom:1px solid #eee;" class="sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="/" class="font-display text-2xl font-bold text-gray-900 tracking-tight">
-        Loker<span style="color:#d4a843">.</span>
-      </a>
-      <a href="/reservar" class="text-sm font-semibold px-5 py-2.5 rounded-full text-white transition"
-         style="background:#1a1a1a; hover:background:#333;">
-        Reservar ahora
-      </a>
+  <!-- ══ NAV ══ -->
+  <nav class="nav-top">
+    <a href="/" class="logo">
+      <div class="logo-icon">L🔒</div>
+      <div class="logo-text">
+        <strong>Locker</strong>
+        <span>cuenca.es</span>
+      </div>
+    </a>
+    <div class="nav-info">
+      <span>📍 C/Tintes 11 · Cuenca</span>
+      <a href="tel:+34614549005">📞 Teléfono</a>
+      <a href="https://wa.me/34614549005" target="_blank" rel="noopener">💬 WhatsApp</a>
     </div>
   </nav>
+  <div class="nav-bottom">
+    <span class="hamburger">☰</span>
+  </div>
 
-  <!-- ══════════════ HERO ══════════════ -->
-  <section class="hero-bg text-white py-28 px-6">
-    <div class="max-w-4xl mx-auto text-center">
-      <span class="inline-block text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full mb-7"
-            style="background:rgba(212,168,67,0.15); color:#e8c46a; border:1px solid rgba(212,168,67,0.3);">
-        ✦ Exclusivo para clientes de Loker Cuenca
-      </span>
-      <h1 class="font-display mb-6 leading-tight" style="font-size: clamp(2.5rem, 6vw, 4rem); font-weight:700;">
-        Empresas<br/>
-        <span class="gold-text">Colaboradoras</span>
-      </h1>
-      <p class="text-gray-300 leading-relaxed max-w-2xl mx-auto" style="font-size:1.125rem;">
-        Reserva tu experiencia con nosotros y desbloquea ventajas exclusivas en los mejores
-        negocios de Cuenca: copas, aventura y arte, todo en un mismo plan.
-      </p>
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+    <div class="location-pill">📍 Empresas colaboradoras · Cuenca</div>
+    <h1>Reserva y llévate<br/>ventajas exclusivas</h1>
+    <p>Al reservar tu taquilla con Locker Cuenca, accedes a ofertas especiales en los mejores negocios de la ciudad.</p>
+    <div class="hero-btns">
+      <a href="/reservar" class="btn-primary">Reservar taquilla</a>
+      <a href="#colaboradores" class="btn-outline">Ver colaboradores</a>
+    </div>
+  </section>
 
-      <div class="flex items-center justify-center gap-12 mt-14">
-        <div class="text-center">
-          <p class="font-display font-bold" style="font-size:2.25rem; color:#e8c46a;">3</p>
-          <p class="text-gray-400 text-sm mt-1">Colaboradores</p>
+  <!-- ══ FEATURES ══ -->
+  <section class="features">
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">📅</div>
+        <strong class="feature-label">Automático</strong>
+        <span class="feature-sub">Con tu reserva</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📲</div>
+        <strong class="feature-label">QR personal</strong>
+        <span class="feature-sub">Lo recibes por email</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🎁</div>
+        <strong class="feature-label">Sin coste extra</strong>
+        <span class="feature-sub">100% gratis</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CÓMO FUNCIONA ══ -->
+  <section class="section" style="background:#fff; border-top:1px solid var(--border);">
+    <div style="max-width:720px; margin:0 auto;">
+      <p class="section-title">📋 Cómo funciona</p>
+      <p class="section-sub">En tres pasos sencillos</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Reserva tu taquilla</h3>
+          <p>Haz tu reserva online en Locker Cuenca como siempre.</p>
         </div>
-        <div style="width:1px; height:40px; background:#333;"></div>
-        <div class="text-center">
-          <p class="font-display font-bold" style="font-size:2.25rem; color:#e8c46a;">100%</p>
-          <p class="text-gray-400 text-sm mt-1">Sin coste extra</p>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Recibe tu QR</h3>
+          <p>En la confirmación de reserva te llegará un código QR exclusivo.</p>
         </div>
-        <div style="width:1px; height:40px; background:#333;"></div>
-        <div class="text-center">
-          <p class="font-display font-bold" style="font-size:2.25rem; color:#e8c46a;">∞</p>
-          <p class="text-gray-400 text-sm mt-1">Experiencias</p>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Disfruta el regalo</h3>
+          <p>Muestra el QR en cualquier colaborador y recibe tu beneficio.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════ CÓMO FUNCIONA ══════════════ -->
-  <section style="background:#fff; border-bottom:1px solid #eee;" class="py-16 px-6">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="font-display text-center font-bold text-gray-900 mb-12" style="font-size:1.75rem;">
-        ¿Cómo funciona?
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <!-- ══ CARDS EMPRESAS ══ -->
+  <section class="companies-section" id="colaboradores">
+    <div style="max-width:900px; margin:0 auto;">
+      <p class="section-title">🤝 Nuestros Colaboradores</p>
+      <p class="section-sub">Muestra tu QR de reserva en cualquiera de estos locales</p>
 
-        <div class="flex flex-col items-center text-center relative">
-          <div class="step-num mb-4">1</div>
-          <h3 class="font-semibold text-gray-900 mb-2">Haz tu reserva</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">
-            Reserva cualquier experiencia en Loker Cuenca de forma normal, como siempre.
-          </p>
-        </div>
+      <div class="companies-grid">
 
-        <div class="flex flex-col items-center text-center relative">
-          <div class="step-num mb-4">2</div>
-          <h3 class="font-semibold text-gray-900 mb-2">Recibe tu código QR</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">
-            Con la confirmación de reserva te enviamos un código QR personal con todos tus beneficios.
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center text-center relative">
-          <div class="step-num mb-4">3</div>
-          <h3 class="font-semibold text-gray-900 mb-2">Disfruta los regalos</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">
-            Muestra el QR en cualquiera de nuestros colaboradores y disfruta tu beneficio exclusivo.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════ CARDS DE EMPRESAS ══════════════ -->
-  <section class="py-20 px-6" style="background:#f8f8f6;">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="font-display text-center font-bold text-gray-900 mb-4" style="font-size:2rem;">
-        Nuestros Colaboradores
-      </h2>
-      <p class="text-center text-gray-500 mb-14 text-sm">Solo tienes que mostrar tu QR de reserva</p>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-        <!-- ── CARD 1: Flow Bar ── -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover fade-1">
-
-          <!-- Imagen real: coctelería / bar de noche -->
-          <div class="relative" style="height:240px; overflow:hidden;">
+        <!-- Flow Bar -->
+        <div class="company-card">
+          <div class="company-img-wrap">
             <img
-              src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80&fit=crop&auto=format"
-              alt="Flow Bar Cuenca - Bar de copas"
-              class="card-img"
+              src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=700&q=80&fit=crop&auto=format"
+              alt="Flow Bar Cuenca"
               loading="lazy"
             />
-            <div class="img-overlay"></div>
-            <!-- Badge beneficio encima de la foto -->
-            <div class="absolute top-4 right-4">
-              <span class="badge-gold text-xs px-3 py-1.5 rounded-full shadow-lg">
-                🎁 Oferta exclusiva
-              </span>
-            </div>
-            <!-- Nombre encima de la foto -->
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <p class="text-white/70 text-xs font-medium tracking-widest uppercase mb-1">Bar de Copas · Cuenca</p>
-              <h3 class="font-display text-white font-bold" style="font-size:1.5rem;">Flow Bar</h3>
+            <div class="overlay"></div>
+            <div class="badge-popular">🎁 Oferta exclusiva</div>
+            <div class="img-name">
+              <div class="category">Bar de copas · Cuenca</div>
+              <h3>Flow Bar</h3>
             </div>
           </div>
-
-          <!-- Contenido de la card -->
-          <div class="p-6">
-            <p class="text-gray-600 text-sm leading-relaxed mb-5">
-              El rincón perfecto para cerrar la noche en Cuenca. Cócteles artesanales,
-              ambiente íntimo y la música justa para que el momento dure más de lo que debería.
-            </p>
-
-            <!-- Beneficio -->
-            <div class="benefit-box bg-amber-50 rounded-xl p-4 mb-5">
-              <p class="text-xs font-bold uppercase tracking-wide mb-1" style="color:#c9953a;">Tu beneficio exclusivo</p>
-              <p class="text-gray-800 font-semibold text-sm">
-                🎁 Oferta especial para clientes Loker al mostrar tu QR
-              </p>
+          <div class="company-body">
+            <p>El rincón perfecto para cerrar la noche en Cuenca. Cócteles artesanales, ambiente íntimo y la música justa para que el momento dure más de lo que debería.</p>
+            <div class="benefit-box">
+              <div class="benefit-label">Tu beneficio exclusivo</div>
+              <div class="benefit-text">🎁 Oferta especial al mostrar tu QR de Locker</div>
             </div>
-
-            <!-- Tags + Instagram -->
-            <div class="flex items-center justify-between">
-              <div class="flex gap-2 flex-wrap">
+            <div class="tags">
+              <div style="display:flex; gap:6px;">
                 <span class="tag">Cócteles</span>
                 <span class="tag">Noche</span>
               </div>
-              <a href="https://www.instagram.com/flowbarcuenca" target="_blank" rel="noopener"
-                 class="text-xs text-gray-400 hover:text-gray-700 transition flex items-center gap-1">
-                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                </svg>
-                @flowbarcuenca
+              <a href="https://www.instagram.com/flowbarcuenca" target="_blank" rel="noopener" class="tag-link">
+                📷 @flowbarcuenca
               </a>
             </div>
           </div>
         </div>
 
-        <!-- ── CARD 2: Tirolina Las Hoces ── -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover fade-2">
-
-          <!-- Imagen: tirolina / aventura natural -->
-          <div class="relative" style="height:240px; overflow:hidden;">
+        <!-- Tirolina Las Hoces -->
+        <div class="company-card">
+          <div class="company-img-wrap">
             <img
-              src="https://images.unsplash.com/photo-1530655638484-8dc67f03e4f5?w=800&q=80&fit=crop&auto=format"
-              alt="Tirolina Las Hoces de Cuenca"
-              class="card-img"
+              src="https://images.unsplash.com/photo-1530655638484-8dc67f03e4f5?w=700&q=80&fit=crop&auto=format"
+              alt="Tirolina Las Hoces Cuenca"
               loading="lazy"
             />
-            <div class="img-overlay"></div>
-            <div class="absolute top-4 right-4">
-              <span class="badge-gold text-xs px-3 py-1.5 rounded-full shadow-lg">
-                🎁 Oferta exclusiva
-              </span>
-            </div>
-            <div class="absolute top-4 left-4">
-              <span class="text-xs px-2.5 py-1 rounded-full font-semibold"
-                    style="background:rgba(0,0,0,0.5); color:#fff; backdrop-filter:blur(4px);">
-                🏆 La más larga de Europa
-              </span>
-            </div>
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <p class="text-white/70 text-xs font-medium tracking-widest uppercase mb-1">Aventura · Cuenca</p>
-              <h3 class="font-display text-white font-bold" style="font-size:1.5rem;">Tirolina Las Hoces</h3>
+            <div class="overlay"></div>
+            <div class="badge-popular">🎁 Oferta exclusiva</div>
+            <div class="badge-europe">🏆 La más larga de Europa</div>
+            <div class="img-name">
+              <div class="category">Aventura · Cuenca</div>
+              <h3>Tirolina Las Hoces</h3>
             </div>
           </div>
-
-          <div class="p-6">
-            <p class="text-gray-600 text-sm leading-relaxed mb-4">
-              Vuela sobre las Hoces del Huécar a 120 metros de altura y 70 km/h.
-              445 metros de adrenalina pura sobre Cuenca Patrimonio de la Humanidad.
-              Una experiencia que no olvidarás.
-            </p>
-
-            <!-- Stats rápidos -->
-            <div class="grid grid-cols-3 gap-2 mb-5">
-              <div class="rounded-xl p-2.5 text-center" style="background:#f0faf0;">
-                <p class="font-bold" style="color:#2a7a2a; font-size:1.1rem;">445m</p>
-                <p class="text-gray-500" style="font-size:0.65rem;">Longitud</p>
-              </div>
-              <div class="rounded-xl p-2.5 text-center" style="background:#f0faf0;">
-                <p class="font-bold" style="color:#2a7a2a; font-size:1.1rem;">70km/h</p>
-                <p class="text-gray-500" style="font-size:0.65rem;">Velocidad</p>
-              </div>
-              <div class="rounded-xl p-2.5 text-center" style="background:#f0faf0;">
-                <p class="font-bold" style="color:#2a7a2a; font-size:1.1rem;">120m</p>
-                <p class="text-gray-500" style="font-size:0.65rem;">Altura</p>
-              </div>
+          <div class="company-body">
+            <p>Vuela sobre las Hoces del Huécar a 120 metros de altura y 70 km/h. 445 metros de adrenalina pura con vistas a Cuenca Patrimonio de la Humanidad.</p>
+            <div class="mini-stats">
+              <div class="mini-stat"><strong>445m</strong><span>Longitud</span></div>
+              <div class="mini-stat"><strong>70km/h</strong><span>Velocidad</span></div>
+              <div class="mini-stat"><strong>120m</strong><span>Altura</span></div>
             </div>
-
-            <!-- Beneficio -->
-            <div class="benefit-box bg-green-50 rounded-xl p-4 mb-5">
-              <p class="text-xs font-bold uppercase tracking-wide mb-1" style="color:#2a7a2a;">Tu beneficio exclusivo</p>
-              <p class="text-gray-800 font-semibold text-sm">
-                🎁 Oferta especial para clientes Loker al mostrar tu QR
-              </p>
+            <div class="benefit-box">
+              <div class="benefit-label">Tu beneficio exclusivo</div>
+              <div class="benefit-text">🎁 Oferta especial al mostrar tu QR de Locker</div>
             </div>
-
-            <div class="flex items-center justify-between">
-              <div class="flex gap-2 flex-wrap">
+            <div class="tags">
+              <div style="display:flex; gap:6px;">
                 <span class="tag">Adrenalina</span>
                 <span class="tag">Naturaleza</span>
               </div>
-              <a href="https://www.tirolinacuenca.com" target="_blank" rel="noopener"
-                 class="text-xs text-gray-400 hover:text-gray-700 transition">
-                tirolinacuenca.com ↗
-              </a>
+              <a href="https://www.tirolinacuenca.com" target="_blank" rel="noopener" class="tag-link">Web ↗</a>
             </div>
           </div>
         </div>
 
-        <!-- ── CARD 3: Galería Juana Romero ── -->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-sm card-hover fade-3">
-
-          <!-- Imagen: galería de arte -->
-          <div class="relative" style="height:240px; overflow:hidden;">
+        <!-- Galería Juana Romero -->
+        <div class="company-card">
+          <div class="company-img-wrap">
             <img
-              src="https://images.unsplash.com/photo-1577083552792-a0d461cb1dd6?w=800&q=80&fit=crop&auto=format"
-              alt="Galería de Arte Juana Romero Cuenca"
-              class="card-img"
+              src="https://images.unsplash.com/photo-1577083552792-a0d461cb1dd6?w=700&q=80&fit=crop&auto=format"
+              alt="Galería Juana Romero Cuenca"
               loading="lazy"
             />
-            <div class="img-overlay"></div>
-            <div class="absolute top-4 right-4">
-              <span class="badge-gold text-xs px-3 py-1.5 rounded-full shadow-lg">
-                🎁 Oferta exclusiva
-              </span>
-            </div>
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <p class="text-white/70 text-xs font-medium tracking-widest uppercase mb-1">Arte Contemporáneo · Cuenca</p>
-              <h3 class="font-display text-white font-bold" style="font-size:1.5rem;">Galería Juana Romero</h3>
+            <div class="overlay"></div>
+            <div class="badge-popular">🎁 Oferta exclusiva</div>
+            <div class="img-name">
+              <div class="category">Arte contemporáneo · Cuenca</div>
+              <h3>Galería Juana Romero</h3>
             </div>
           </div>
-
-          <div class="p-6">
-            <p class="text-gray-600 text-sm leading-relaxed mb-4">
-              Arte moderno y contemporáneo en el corazón de Cuenca. Obras de Zóbel, Saura,
-              Canogar y artistas actuales. Exposiciones temporales, visitas guiadas
-              y encuentros con artistas. C/ Alonso Chirino 7.
-            </p>
-
-            <!-- Artistas -->
-            <div class="rounded-xl p-3 mb-4" style="background:#fdf8f0;">
-              <p class="text-xs font-bold uppercase tracking-wide mb-1.5" style="color:#8b5e2a;">Artistas en galería</p>
-              <p class="text-gray-700 text-xs leading-relaxed">
-                Zóbel · Saura · Canogar · Equipo Crónica · Diego Forriol · Emilio Cárdenas · y más
-              </p>
+          <div class="company-body">
+            <p>Arte moderno y contemporáneo en el corazón de Cuenca. Obras de Zóbel, Saura, Canogar y artistas actuales. C/ Alonso Chirino 7.</p>
+            <div class="artists-box">
+              <div class="artists-label">Artistas en galería</div>
+              <p>Zóbel · Saura · Canogar · Equipo Crónica · Diego Forriol · y más</p>
             </div>
-
-            <!-- Beneficio -->
-            <div class="benefit-box bg-orange-50 rounded-xl p-4 mb-5">
-              <p class="text-xs font-bold uppercase tracking-wide mb-1" style="color:#8b5e2a;">Tu beneficio exclusivo</p>
-              <p class="text-gray-800 font-semibold text-sm">
-                🎁 Oferta especial para clientes Loker al mostrar tu QR
-              </p>
+            <div class="benefit-box">
+              <div class="benefit-label">Tu beneficio exclusivo</div>
+              <div class="benefit-text">🎁 Oferta especial al mostrar tu QR de Locker</div>
             </div>
-
-            <div class="flex items-center justify-between">
-              <div class="flex gap-2 flex-wrap">
-                <span class="tag">Arte moderno</span>
+            <div class="tags">
+              <div style="display:flex; gap:6px;">
+                <span class="tag">Arte</span>
                 <span class="tag">Internacional</span>
               </div>
-              <a href="https://juanaromero.art" target="_blank" rel="noopener"
-                 class="text-xs text-gray-400 hover:text-gray-700 transition">
-                juanaromero.art ↗
-              </a>
+              <a href="https://juanaromero.art" target="_blank" rel="noopener" class="tag-link">Web ↗</a>
             </div>
           </div>
         </div>
@@ -350,66 +601,71 @@
     </div>
   </section>
 
-  <!-- ══════════════ MAPA / UBICACIONES ══════════════ -->
-  <section class="py-16 px-6" style="background:#fff; border-top:1px solid #eee;">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="font-display font-bold text-gray-900 mb-3" style="font-size:1.75rem;">Todo en Cuenca</h2>
-      <p class="text-gray-500 text-sm mb-10">Nuestros colaboradores están todos en el centro histórico</p>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-        <div class="flex items-start gap-3 p-4 rounded-xl" style="background:#fafafa; border:1px solid #eee;">
-          <span class="text-2xl mt-0.5">🍸</span>
+  <!-- ══ UBICACIONES ══ -->
+  <section class="locations-section">
+    <div style="max-width:720px; margin:0 auto;">
+      <p class="section-title">📍 Dónde encontrarlos</p>
+      <p class="section-sub">Todos en el centro histórico de Cuenca</p>
+      <div class="locations-grid">
+        <div class="location-item">
+          <span class="location-icon">🍸</span>
           <div>
-            <p class="font-semibold text-gray-900 text-sm">Flow Bar</p>
-            <p class="text-gray-500 text-xs mt-1">Cuenca ciudad · Ver en Instagram</p>
+            <strong>Flow Bar</strong>
+            <span>Cuenca ciudad · <a href="https://www.instagram.com/flowbarcuenca" target="_blank" style="color:var(--amber); font-weight:700;">Ver Instagram</a></span>
           </div>
         </div>
-        <div class="flex items-start gap-3 p-4 rounded-xl" style="background:#fafafa; border:1px solid #eee;">
-          <span class="text-2xl mt-0.5">🏔️</span>
+        <div class="location-item">
+          <span class="location-icon">🏔️</span>
           <div>
-            <p class="font-semibold text-gray-900 text-sm">Tirolina Las Hoces</p>
-            <p class="text-gray-500 text-xs mt-1">Barrio del Castillo · Cuenca</p>
+            <strong>Tirolina Las Hoces</strong>
+            <span>Barrio del Castillo · Cuenca</span>
           </div>
         </div>
-        <div class="flex items-start gap-3 p-4 rounded-xl" style="background:#fafafa; border:1px solid #eee;">
-          <span class="text-2xl mt-0.5">🖼️</span>
+        <div class="location-item">
+          <span class="location-icon">🖼️</span>
           <div>
-            <p class="font-semibold text-gray-900 text-sm">Galería Juana Romero</p>
-            <p class="text-gray-500 text-xs mt-1">C/ Alonso Chirino 7 · Cuenca</p>
+            <strong>Galería Juana Romero</strong>
+            <span>C/ Alonso Chirino 7 · Cuenca</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════ CTA FINAL ══════════════ -->
-  <section class="hero-bg py-24 px-6 text-white">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="font-display font-bold mb-4" style="font-size: clamp(1.8rem, 4vw, 2.75rem);">
-        ¿Listo para disfrutar Cuenca al máximo?
-      </h2>
-      <p class="text-gray-300 mb-10 leading-relaxed">
-        Una reserva, tres experiencias extra. Copas, adrenalina y arte incluidos,
-        sin pagar nada más.
-      </p>
-      <a href="/reservar"
-         class="inline-block font-bold text-gray-900 px-10 py-4 rounded-full transition shadow-xl"
-         style="background: linear-gradient(135deg, #c9953a, #f0c060); font-size:1.05rem;">
-        Reservar ahora →
+  <!-- ══ CTA FINAL ══ -->
+  <section class="cta-section">
+    <h2>¿Listo para aprovechar al máximo tu visita a Cuenca?</h2>
+    <p>Reserva tu taquilla y desbloquea todas las ventajas exclusivas automáticamente.</p>
+    <a href="/reservar" class="btn-amber">Reservar taquilla</a>
+    <p class="cta-note">Los beneficios llegan con la confirmación de reserva · Sin coste adicional</p>
+  </section>
+
+  <!-- ══ NECESITAS AYUDA ══ -->
+  <section style="background:#1a3a5c; padding:32px 20px; text-align:center;">
+    <p style="color:#fff; font-size:1rem; font-weight:800; margin-bottom:16px;">¿Necesitas ayuda?</p>
+    <p style="color:rgba(255,255,255,0.65); font-size:0.82rem; margin-bottom:20px;">Escríbenos por WhatsApp o llámanos al momento.</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="https://wa.me/34614549005" target="_blank" rel="noopener"
+         style="background:#25D366; color:#fff; padding:11px 22px; border-radius:8px; font-weight:800; font-size:0.88rem; text-decoration:none; display:flex; align-items:center; gap:6px;">
+        💬 Escribir por WhatsApp
       </a>
-      <p class="text-gray-600 text-xs mt-5">Los beneficios llegan automáticamente con tu confirmación de reserva</p>
+      <a href="tel:+34614549005"
+         style="background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.3); padding:11px 22px; border-radius:8px; font-weight:800; font-size:0.88rem; text-decoration:none; display:flex; align-items:center; gap:6px;">
+        📞 Llamar: +34 614 549 005
+      </a>
     </div>
   </section>
 
-  <!-- ══════════════ FOOTER ══════════════ -->
-  <footer style="background:#0d0d0d; color:#666;" class="py-10 px-6 text-center text-sm">
-    <p class="font-display text-white font-bold text-xl mb-2">Loker<span style="color:#d4a843">.</span></p>
-    <p>Cuenca, España</p>
-    <p class="mt-1">
-      <a href="https://lokercuenca.es" class="hover:text-gray-300 transition">lokercuenca.es</a>
-    </p>
-    <p class="mt-5 text-xs" style="color:#444;">© 2026 Loker Cuenca. Todos los derechos reservados.</p>
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <strong>LOCKER CUENCA</strong>
+    C/Tintes 11 · 16001 Cuenca ·
+    <a href="mailto:reservas@lockercuenca.es">reservas@lockercuenca.es</a>
+    <p style="margin-top:10px; color:#555;">© 2026 Locker Cuenca · Todos los derechos reservados</p>
   </footer>
+
+  <!-- ══ WHATSAPP FLOTANTE ══ -->
+  <a href="https://wa.me/34614549005" target="_blank" rel="noopener" class="whatsapp-float" title="WhatsApp">💬</a>
 
 </body>
 </html>

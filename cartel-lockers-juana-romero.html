@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartel Lockers — Juana Romero Contemporary Art · Cuenca</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,400&family=Montserrat:wght@800;900&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --c-bg:        #3B3B3B;
+      --c-white:     #FFFFFF;
+      --c-silver:    #C8C8C8;
+      --c-mid:       #9E9E9E;
+      --c-muted:     #727272;
+      --c-divider:   rgba(255,255,255,0.13);
+      --font-serif:  'Cormorant Garamond', 'Palatino Linotype', 'Palatino', Georgia, serif;
+      --font-sans:   'Montserrat', 'Futura', 'Century Gothic', 'Arial Black', sans-serif;
+      --font-ui:     'Inter', 'Helvetica Neue', 'Calibri', Arial, sans-serif;
+    }
+
+    body {
+      background: #161616;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    .ficha {
+      font-family: var(--font-ui);
+      font-weight: 300;
+      font-size: 10px;
+      color: #3A3A3A;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    /* ─────────────────────────────────────────────────────
+       PÓSTER  120 × 45 cm  →  relación 8 : 3
+    ───────────────────────────────────────────────────── */
+    .poster-wrap {
+      width: min(1200px, 100%);
+    }
+
+    .poster {
+      width: 100%;
+      aspect-ratio: 8 / 3;
+
+      background-color: var(--c-bg);
+      background-image:
+        radial-gradient(ellipse 55% 80% at 12% 50%, rgba(82,82,82,0.45) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 65% at 84% 48%, rgba(40,40,40,0.55) 0%, transparent 60%);
+
+      display: grid;
+      grid-template-columns: 25% 55% 20%;
+      grid-template-rows: 1fr auto;
+
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 70px rgba(0,0,0,0.6), 0 3px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Grano mate — textura premium */
+    .poster::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)' opacity='0.12'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+      mix-blend-mode: overlay;
+    }
+
+    /* ─── BLOQUE IZQUIERDO: La Autoridad (25%) ─── */
+    .bl-left {
+      grid-column: 1;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 9% 8% 8% 9%;
+      position: relative;
+      z-index: 1;
+      border-right: 1px solid var(--c-divider);
+    }
+
+    .firma-nombre {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: clamp(17px, 2.7vw, 33px);
+      color: var(--c-white);
+      letter-spacing: 0.1em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .firma-sep {
+      height: 1px;
+      width: 85%;
+      background: linear-gradient(90deg, rgba(200,200,200,0.5) 0%, transparent 100%);
+      margin: 7px 0;
+    }
+
+    .firma-arte {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(10px, 1.3vw, 15px);
+      color: var(--c-mid);
+      letter-spacing: 0.24em;
+    }
+
+    .firma-addr {
+      font-family: var(--font-ui);
+      font-weight: 300;
+      font-size: clamp(8px, 0.9vw, 11px);
+      color: var(--c-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── BLOQUE CENTRAL: El Manifiesto (55%) ─── */
+    .bl-center {
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      align-items: center;
+      padding: 6% 7% 6% 7%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .headline {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: clamp(21px, 3.55vw, 43px);
+      color: var(--c-white);
+      line-height: 1.28;
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+    }
+
+    /* ─── BLOQUE DERECHO: La Acción (20%) ─── */
+    .bl-right {
+      grid-column: 3;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 5% 5% 8%;
+      position: relative;
+      z-index: 1;
+      border-left: 1px solid var(--c-divider);
+    }
+
+    .qr-frame {
+      border: 1.5px solid rgba(255,255,255,0.28);
+      padding: 5px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    #qr-cv { display: block; }
+
+    .scan-hint {
+      font-family: var(--font-ui);
+      font-weight: 300;
+      font-size: clamp(6px, 0.75vw, 9px);
+      color: var(--c-muted);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .qr-url {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: clamp(8px, 1.05vw, 12px);
+      color: var(--c-silver);
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    /* ─── PIE DE CARTEL ─── */
+    .footer {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      border-top: 1px solid var(--c-divider);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2% 6%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-txt {
+      font-family: var(--font-ui);
+      font-weight: 300;
+      font-size: clamp(7px, 0.85vw, 10px);
+      color: var(--c-muted);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+
+    /* ─── PRINT ─── */
+    @media print {
+      body { background: none; padding: 0; min-height: auto; display: block; }
+      .ficha { display: none; }
+      .poster-wrap { width: 100%; }
+      .poster { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <p class="ficha">Propuesta 1 &nbsp;&middot;&nbsp; Cartel Lockers Cuenca &nbsp;&middot;&nbsp; 120 &times; 45 cm</p>
+
+  <div class="poster-wrap">
+    <div class="poster">
+
+      <!-- ██ BLOQUE IZQUIERDO: La Autoridad ██ -->
+      <div class="bl-left">
+        <div>
+          <p class="firma-nombre">Juana Romero</p>
+          <div class="firma-sep"></div>
+          <p class="firma-arte">Contemporary Art</p>
+        </div>
+        <p class="firma-addr">C/ Alonso Chirino, 7 &middot; Cuenca</p>
+      </div>
+
+      <!-- ██ BLOQUE CENTRAL: El Manifiesto ██ -->
+      <div class="bl-center">
+        <p class="headline">
+          El único lugar donde<br>
+          el arte se toca<br>
+          y el diseño se colecciona.
+        </p>
+      </div>
+
+      <!-- ██ BLOQUE DERECHO: La Acción ██ -->
+      <div class="bl-right">
+        <div class="qr-frame">
+          <canvas id="qr-cv"></canvas>
+        </div>
+        <p class="scan-hint">Descubre la colección web</p>
+        <p class="qr-url">juanaromero.art</p>
+      </div>
+
+      <!-- ██ PIE DE CARTEL ██ -->
+      <div class="footer">
+        <span class="footer-txt">
+          C/ Alonso Chirino, 7 — Cuenca &nbsp;&nbsp;&middot;&nbsp;&nbsp; juanaromero.art
+        </span>
+      </div>
+
+    </div><!-- /.poster -->
+  </div><!-- /.poster-wrap -->
+
+  <!-- QR Code via CDN (qrcode npm package) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>
+    (function () {
+      var canvas   = document.getElementById('qr-cv');
+      var blRight  = document.querySelector('.bl-right');
+      var blockW   = blRight.clientWidth || 240;
+      var qrSize   = Math.round(blockW * 0.60);
+      qrSize = Math.max(105, Math.min(qrSize, 165));
+
+      if (typeof QRCode !== 'undefined') {
+        QRCode.toCanvas(canvas, 'https://juanaromero.art', {
+          width: qrSize,
+          margin: 1,
+          errorCorrectionLevel: 'M',
+          color: { dark: '#FFFFFF', light: '#3B3B3B' }
+        }, function (err) {
+          if (err) console.warn('QR error:', err);
+        });
+      } else {
+        /* Fallback: placeholder visual si CDN no disponible */
+        canvas.width  = qrSize;
+        canvas.height = qrSize;
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#3B3B3B';
+        ctx.fillRect(0, 0, qrSize, qrSize);
+        ctx.strokeStyle = 'rgba(255,255,255,0.32)';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(5, 5, qrSize - 10, qrSize - 10);
+        /* esquinas finder */
+        [[8,8],[qrSize-30,8],[8,qrSize-30]].forEach(function(p){
+          ctx.strokeRect(p[0], p[1], 22, 22);
+          ctx.fillStyle = 'rgba(255,255,255,0.5)';
+          ctx.fillRect(p[0]+5, p[1]+5, 12, 12);
+          ctx.fillStyle = '#3B3B3B';
+        });
+        ctx.fillStyle = 'rgba(255,255,255,0.22)';
+        ctx.font = Math.round(qrSize * 0.085) + 'px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('[ QR code ]', qrSize / 2, qrSize / 2);
+      }
+    }());
+  </script>
+
+</body>
+</html>

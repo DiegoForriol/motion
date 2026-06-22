@@ -83,14 +83,8 @@ function generateCampaign(contacts) {
 // --- Example usage ---
 const contacts = [
   {
-    phone: '+34600000001',
+    phone: '+34626930927',
     fullName: 'Juana ROMERO RODENAS',
-    headerImageUrl: 'https://example.com/images/rebajas-vosso-30.jpg',
-    shopUrl: 'https://vosso.es/rebajas',
-  },
-  {
-    phone: '+34600000002',
-    fullName: 'María GARCÍA LÓPEZ',
     headerImageUrl: 'https://example.com/images/rebajas-vosso-30.jpg',
     shopUrl: 'https://vosso.es/rebajas',
   },

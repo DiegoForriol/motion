@@ -1,0 +1,90 @@
+[
+  {
+    "messaging_product": "whatsapp",
+    "to": "+34600000001",
+    "type": "template",
+    "template": {
+      "name": "rebajas_vosso",
+      "language": {
+        "code": "es"
+      },
+      "components": [
+        {
+          "type": "header",
+          "parameters": [
+            {
+              "type": "image",
+              "image": {
+                "link": "https://example.com/images/rebajas-vosso-30.jpg"
+              }
+            }
+          ]
+        },
+        {
+          "type": "body",
+          "parameters": [
+            {
+              "type": "text",
+              "text": "Juana ROMERO RODENAS"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "sub_type": "url",
+          "index": "0",
+          "parameters": [
+            {
+              "type": "text",
+              "text": "https://vosso.es/rebajas"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "messaging_product": "whatsapp",
+    "to": "+34600000002",
+    "type": "template",
+    "template": {
+      "name": "rebajas_vosso",
+      "language": {
+        "code": "es"
+      },
+      "components": [
+        {
+          "type": "header",
+          "parameters": [
+            {
+              "type": "image",
+              "image": {
+                "link": "https://example.com/images/rebajas-vosso-30.jpg"
+              }
+            }
+          ]
+        },
+        {
+          "type": "body",
+          "parameters": [
+            {
+              "type": "text",
+              "text": "María GARCÍA LÓPEZ"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "sub_type": "url",
+          "index": "0",
+          "parameters": [
+            {
+              "type": "text",
+              "text": "https://vosso.es/rebajas"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "name": "rebajas_vosso",
+  "language": "es",
+  "category": "MARKETING",
+  "components": [
+    {
+      "type": "HEADER",
+      "format": "IMAGE",
+      "example": {
+        "header_handle": ["{{header_image_url}}"]
+      }
+    },
+    {
+      "type": "BODY",
+      "text": "Hola ❤️ {{1}} tengo un plan para ti!!\n\nHoy empiezan las rebajas en Vosso y quería avisarte antes de que vuelen esas prendas que siempre miras dos veces 😍\n\nTenemos esos vestidos que tanto te gustan, las cuñas que te estilizan sin perder la comodidad y muchas de tus prendas favoritas hasta un -30% 🛍️\n\nDe esas que te pruebas y dices: \"este es\" 😏\n\nY ya sabes... hoy están, pero mañana probablemente no. Luego no digas que no te avisé. 😅\n\nVen a Vosso hoy y encuentra ese look que ya tenías fichado.\n\nTe esperamos en nuestra tienda. 👗\n📍 C/ Mayor, 5 02001 - Albacete\n\nY si prefieres mirarlo online, visítanos en: 🌐\n\n¡Te esperamos! 🤩",
+      "example": {
+        "body_text": [["Juana ROMERO RODENAS"]]
+      }
+    },
+    {
+      "type": "BUTTONS",
+      "buttons": [
+        {
+          "type": "URL",
+          "text": "A por mis rebajas",
+          "url": "{{2}}"
+        }
+      ]
+    }
+  ]
+}

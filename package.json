@@ -1,0 +1,11 @@
+{
+  "name": "whatsapp-template-generator",
+  "version": "1.0.0",
+  "description": "WhatsApp Business API template generator for marketing campaigns",
+  "main": "src/index.js",
+  "scripts": {
+    "generate": "node src/generate.js",
+    "validate": "node src/validate.js"
+  },
+  "type": "module"
+}

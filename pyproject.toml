@@ -1,0 +1,15 @@
+[project]
+name = "adstool"
+version = "0.1.0"
+description = "Diagnóstico y corrección de campañas de Google Ads para lockercuenca.es"
+requires-python = ">=3.10"
+
+[project.scripts]
+adstool = "adstool.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["adstool", "adstool.diagnostics", "adstool.fixes", "adstool.report"]

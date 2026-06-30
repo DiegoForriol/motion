@@ -1,0 +1,9 @@
+# Copia este archivo a "google-ads.yaml" y rellena tus credenciales reales.
+# NUNCA subas el archivo "google-ads.yaml" (ya está en .gitignore).
+developer_token: "INSERT_DEVELOPER_TOKEN_HERE"
+client_id: "INSERT_OAUTH_CLIENT_ID_HERE"
+client_secret: "INSERT_OAUTH_CLIENT_SECRET_HERE"
+refresh_token: "INSERT_REFRESH_TOKEN_HERE"
+# Solo necesario si accedes a la cuenta a través de una cuenta de gestor (MCC):
+login_customer_id: "INSERT_MCC_OR_LOGIN_CUSTOMER_ID_HERE"
+use_proto_plus: true

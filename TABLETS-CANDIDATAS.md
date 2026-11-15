@@ -16,7 +16,7 @@ De **126** tablets listadas para Europa quedan **38** tras aplicar:
 1. **Estar en este directorio ya garantiza el modo kiosco.** El directorio solo distingue entre *Knowledge Worker* e industrial; no hay una categoría de kiosco separada, porque el modo dispositivo dedicado es parte de Android Enterprise y lo soportan todos los listados.
 2. **Las 38 soportan *zero-touch***, es decir, aprovisionamiento en bloque sin tocar cada aparato. Esto deja de ser una ventaja exclusiva de Samsung y de su Knox Mobile Enrollment.
 3. **El criterio que de verdad separa a las candidatas son los años de parches de seguridad**, porque marcan el ciclo de reemplazo del parque. La horquilla va de 2026 a 2032: seis años de diferencia.
-4. **El directorio no incluye precios.** Hay que mirarlos aparte y tienen caducidad corta.
+4. **El directorio no incluye precios.** Consultados aparte el 2026-11-15, ver §Precios. Caducan rápido.
 
 ## Las tres que importan
 
@@ -27,6 +27,36 @@ De **126** tablets listadas para Europa quedan **38** tras aplicar:
 | **TCL TAB 10L LTE Gen 4** | 10,1", parches hasta febrero de 2028. Candidata si el precio es muy inferior a las dos de arriba. |
 
 **Corrección respecto a la recomendación anterior:** la **Galaxy Tab A9+ 5G** solo tiene parches hasta **octubre de 2027**, menos de dos años desde hoy. Queda descartada frente a la A11+.
+
+## Precios
+
+Consultados el 2026-11-15 en tiendas españolas. **Caducan rápido**; verificar el día de comprar.
+
+| Modelo (versión con SIM) | Precio | Parches restantes | **€ / año de soporte** |
+|---|---|---|---|
+| **Samsung Galaxy Tab A11+ 5G** 128/6 GB | **274 €** (MediaMarkt, oferta; ref. 379 €, Vodafone 360 €) | ~6,0 años | **~46 €** |
+| **Redmi Pad 2 4G** 128/4 GB | **229 €** (MediaMarkt, El Corte Inglés) | ~5,7 años | **~40 €** |
+| **TCL TAB 10L LTE Gen 4** | [Suposición] ~140-150 € (confirmados 107-119 € solo en la versión **wifi**) | ~1,3 años | **~115 €** |
+
+**La más barata es la más cara.** El TCL cuesta la mitad y sale al triple por año de soporte, porque sus parches acaban en febrero de 2028.
+
+### Decisión: Samsung A11+ 5G, pagando 45 € más que la Redmi
+
+Los 6 €/año de diferencia entre Samsung y Redmi están dentro del ruido de las ofertas. La decisión se toma por otro motivo:
+
+**Redmi es Xiaomi.** Y Xiaomi es el fabricante más agresivo cerrando procesos en segundo plano — exactamente el problema que este producto tiene que vencer (§6.1 del análisis). Pagar 45 € más por no pelearse con HyperOS en cada dispositivo del parque es barato.
+
+### Trampas al comprar
+
+- **La Redmi Pad 2 a 199 € es la versión SIN 4G.** El anuncio tiene que decir "4G" explícitamente.
+- **Las fichas del TCL a 107-119 € son la versión wifi.** La LTE es otro producto, con otras cámaras y ranura nano-SIM.
+- La A11+ a 274 € es **precio de oferta**; el de referencia es 379 €.
+
+### Lo que esto hace al modelo de negocio
+
+Amortizar la tablet en la suscripción sale caro: 274 € a 6 años son ~3,80 €/mes, más ~5 €/mes de SIM de datos. Son **~9 €/mes de coste fijo** por familia, que sobre una cuota de 20-25 € se come en torno al 40 % del margen bruto.
+
+**Conclusión:** refuerza la opción de §6.4.4 — **que la tablet la compre la familia** (un pago único de ~274 €, o la ponen ellos), y la suscripción cubra solo el servicio. Amortizarla tú solo tiene sentido si la cuota sube bastante por encima de 25 €.
 
 ## Lista completa
 

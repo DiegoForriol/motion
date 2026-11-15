@@ -18,7 +18,43 @@ De **126** tablets listadas para Europa quedan **38** tras aplicar:
 3. **El criterio que de verdad separa a las candidatas son los años de parches de seguridad**, porque marcan el ciclo de reemplazo del parque. La horquilla va de 2026 a 2032: seis años de diferencia.
 4. **El directorio no incluye precios.** Consultados aparte el 2026-11-15, ver §Precios. Caducan rápido.
 
-## Las tres que importan
+## Corrección del 2026-11-15: sobraban dos requisitos
+
+Este documento se construyó con dos exigencias que inflaron el precio sin necesidad.
+
+**1. Estar en el directorio de Android Enterprise no es un requisito técnico.** Es un sello de validación de Google. [Probable] El modo kiosco (*device owner*) funciona en **cualquier Android certificado por Google**, aprovisionado con el mismo QR. Filtrar por ese directorio dejó fuera toda la gama baja sin motivo.
+
+**2. Seis años de parches es lógica de flota corporativa, no de este producto.** El aparato ejecuta **una sola app, en modo kiosco, sin navegador, sin correo y sin acceso a la tienda**. La superficie de ataque es mínima. [Probable] Los años de parches pesan mucho menos aquí que en un móvil de uso general, y el aparato no deja de funcionar cuando se acaban: deja de recibir actualizaciones.
+
+**El único requisito que no se negocia: certificación de Google (GMS).** Sin ella no hay Play Store ni avisos remotos — es lo que descarta las tablets sin marca de 60 € y la Amazon Fire. Se comprueba en el propio aparato: *Play Store → Ajustes → Certificación de Play Protect*.
+
+### El suelo real de precio
+
+Todas estas siguen estando en el directorio validado, así que no se pierde nada por bajar de precio:
+
+| Modelo (wifi) | Pulgadas | Parches hasta | Precio |
+|---|---|---|---|
+| **TCL TAB 10 Gen4** | 10,1" | feb 2028 | **~107 €** (PcComponentes) |
+| **TCL TAB A1** | 11,0" | **jun 2029** | [Suposición] ~120-150 €, sin verificar |
+| **Lenovo Tab M11** | 11,0" | feb 2028 | ~135 €, promo puntual a 139 € |
+| **Redmi Pad 2** | 11,0" | nov 2032 | ~180-199 € |
+| Samsung Galaxy Tab A11+ | 11,0" | nov 2032 | 208 € |
+
+> Cuidado con la nomenclatura de TCL: el directorio lista *TAB 10 Gen4* (wifi) y *TAB 10L LTE Gen 4* por separado, y las fichas de tienda mezclan "10" y "10L". Hay que confirmar la variante exacta antes de comprar.
+
+**También se matiza el argumento contra Xiaomi:** se descartó la Redmi por el cierre agresivo de procesos en segundo plano, pero en modo kiosco y siendo dueños del dispositivo **la política de batería la controlamos nosotros**, así que ese riesgo se reduce mucho. La Redmi Pad 2 wifi vuelve a ser candidata.
+
+### Para la prueba técnica
+
+Una de segunda mano, **50-80 €**. El aprovisionamiento exige formateo de fábrica de todos modos, así que el estado estético es irrelevante. No tiene sentido gastar 208 € para responder una pregunta técnica.
+
+### Y la razón de fondo
+
+Elegir el modelo ahora es **especificar hardware antes de tener un cliente**. El precio correcto no sale de comparar fichas: sale de la primera familia que diga cuánto está dispuesta a pagar. Hasta entonces, cualquier cifra de este documento es provisional.
+
+---
+
+## Las tres que importan *(criterio antiguo: máximo soporte, sin tope de precio)*
 
 | | Por qué |
 |---|---|

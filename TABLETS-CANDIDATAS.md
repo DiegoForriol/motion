@@ -40,9 +40,20 @@ Consultados el 2026-11-15 en tiendas españolas. **Caducan rápido**; verificar 
 
 **La más barata es la más cara.** El TCL cuesta la mitad y sale al triple por año de soporte, porque sus parches acaban en febrero de 2028.
 
-### Decisión: Samsung A11+ 5G, pagando 45 € más que la Redmi
+### La versión wifi baja el precio a 208 €
 
-Los 6 €/año de diferencia entre Samsung y Redmi están dentro del ruido de las ofertas. La decisión se toma por otro motivo:
+La **misma A11+ sin SIM** (también con parches hasta noviembre de 2032) está a **208 €** en MediaMarkt (PVP 329 €), y hay reacondicionada a 206,90 €. Son **~35 €/año de soporte**, el suelo real de la lista para seis años de parches.
+
+| Variante A11+ 128/6 GB | Precio | €/año |
+|---|---|---|
+| Wifi | **208 €** | **~35 €** |
+| 5G (con SIM) | 274 € | ~46 € |
+
+**Lo que se paga por ahorrar los 66 € + los ~5 €/mes de SIM:** dependencia del wifi de la casa. Aceptable porque el latido (§6.3) delata la caída del router al día siguiente: es un riesgo visible, no silencioso. La variante 5G queda como opción para casas sin wifi fiable.
+
+### Decisión: Samsung A11+, pagando ~20 € más que la Redmi
+
+La diferencia de precio con la Redmi Pad 2 wifi (180-199 €) está dentro del ruido de las ofertas. La decisión se toma por otro motivo:
 
 **Redmi es Xiaomi.** Y Xiaomi es el fabricante más agresivo cerrando procesos en segundo plano — exactamente el problema que este producto tiene que vencer (§6.1 del análisis). Pagar 45 € más por no pelearse con HyperOS en cada dispositivo del parque es barato.
 
@@ -54,9 +65,20 @@ Los 6 €/año de diferencia entre Samsung y Redmi están dentro del ruido de la
 
 ### Lo que esto hace al modelo de negocio
 
-Amortizar la tablet en la suscripción sale caro: 274 € a 6 años son ~3,80 €/mes, más ~5 €/mes de SIM de datos. Son **~9 €/mes de coste fijo** por familia, que sobre una cuota de 20-25 € se come en torno al 40 % del margen bruto.
+Amortizar la tablet en la suscripción sale caro: 208 € a 6 años son ~2,90 €/mes (la de 5G, ~3,80 € más ~5 €/mes de SIM). Sobre una cuota de 20-25 €, la variante con SIM se come en torno al 40 % del margen bruto.
 
-**Conclusión:** refuerza la opción de §6.4.4 — **que la tablet la compre la familia** (un pago único de ~274 €, o la ponen ellos), y la suscripción cubra solo el servicio. Amortizarla tú solo tiene sentido si la cuota sube bastante por encima de 25 €.
+**Conclusión:** refuerza la opción de §6.4.4 — **que la tablet la compre la familia** (pago único de ~208 €, o la ponen ellos), y la suscripción cubra solo el servicio.
+
+**Y el problema real no es el precio, es el momento en que se pide.** Nadie paga 208 € por una hipótesis. De ahí el orden del §6.4.1: entran gratis con el móvil que ya tienen, se topan con la fricción, y entonces el aparato es algo que quieren. Comparado con la teleasistencia (25-35 €/mes indefinidamente), 208 € de una vez se amortizan en unos ocho meses.
+
+## Descartado: placas tipo Raspberry Pi con Android
+
+1. [Seguro] No hay Android oficial para Raspberry; solo ports de la comunidad.
+2. [Seguro] Sin Google Play Services no hay push ni Play Store — el mismo defecto que descarta la Amazon Fire. Existen licencias GMS empresariales, pero se pagan por dispositivo.
+3. [Probable] No sale más barato: con pantalla táctil (~60-80 €), caja, fuente y altavoz se llega a 150-200 € por algo más grande, sin batería, sin garantía y **de montaje manual unidad por unidad**.
+4. [Probable] **Y la decisiva:** vender un aparato ensamblado convierte al vendedor en **fabricante** — marcado CE, declaración de conformidad y responsabilidad de producto. Es el negocio descartado en §6.4.3.
+
+Vale como prototipo sobre la mesa. No para instalar en casas.
 
 ## Lista completa
 

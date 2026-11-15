@@ -272,6 +272,62 @@ Traducción: el dispositivo del mayor puede dejar de avisar **sin que nadie lo n
 
 ---
 
+## 6.4 El dispositivo: dos niveles de producto
+
+Decisión tomada el 2026-11-15, a partir del problema de la batería y del volumen. El móvil personal del mayor es el peor soporte posible para esto: se queda sin batería, está en otra habitación, suena poco y su fabricante mata procesos.
+
+### 6.4.1 Los dos niveles, en el orden correcto
+
+| | **App sola** | **App + tablet** |
+|---|---|---|
+| Soporte | Móvil del mayor | Tablet fija, siempre enchufada |
+| Fiabilidad | Limitada por el fabricante | Controlada por nosotros (§6.4.2) |
+| Papel comercial | **Puerta de entrada**, gratis o casi | **El producto** |
+| Precio | [Suposición] 0 € o simbólico | [Suposición] 20–25 €/mes |
+
+**La app sola no es la versión económica: es el canal de adquisición.** La familia la prueba en el móvil, se topa con la fricción real (batería, el móvil en otra habitación, no la oye) y eso es lo que vende la tablet. La fricción hace de comercial.
+
+**[Suposición]** Riesgo de ancla de precio: poner la app sola a 5 €/mes impide luego pedir 25 € por la de tablet. Y 25 € está dentro de lo que el mercado de teleasistencia ya paga (§3.2).
+
+### 6.4.2 Modo kiosco: la tablet que solo sabe decir sí
+
+**[Probable]** Android permite entregar un aparato que arranca directamente en la app y es **incapaz de hacer otra cosa**: sin botón de inicio, sin ajustes, sin otras apps, sin posibilidad de desinstalarla (*device owner* + *lock task mode*).
+
+Requiere provisionar el dispositivo desde fábrica, escaneando un QR en el primer arranque. **Eso, que es absurdo en el móvil personal del mayor (§5.1), es ideal en una tablet que entregamos ya preparada.**
+
+Y la consecuencia importante: **siendo dueños del dispositivo controlamos las políticas de batería**, así que el asesino de procesos del fabricante deja de ser nuestro problema. Es el único camino conocido hacia el 100 % de fiabilidad del §6.1.
+
+Esto convierte la tablet de accesorio recomendado en **la versión seria del producto**.
+
+### 6.4.3 Qué no hacer
+
+- **Hardware propio** (una caja con un botón físico): [Seguro] moldes, certificación CE y de radio, pedidos mínimos, firmware y logística. Años y seis cifras. No antes de 200 familias pagando.
+- **Televisores:** [Seguro] una app no puede encender una tele apagada, y es una build y una certificación por fabricante. Vale como pantalla secundaria si ya está encendida; no como mecanismo.
+- **Alexa / Google Home como mecanismo principal:** sin internet no funciona, no hay botón que pulsar, y la promesa central pasaría a depender de la API y la política de un tercero. [Suposición] Conviene además comprobar el estado actual del negocio de skills antes de apostar ahí.
+  - **Sí tiene sentido más adelante** como altavoz secundario del escalado: *"María, no has confirmado la pastilla de las nueve."* Añadido barato y de mucho valor percibido, nunca el soporte del producto.
+
+> **Principio:** la fiabilidad se gana con **menos** plataformas, no con más. Cada sistema añadido multiplica los modos de fallo.
+
+### 6.4.4 Logística: no comprar stock todavía
+
+Revender tablets implica inventario, devoluciones, garantías, IVA y envíos. [Probable] Es otro negocio, con peores márgenes y mucha carga operativa. Orden recomendado:
+
+1. **Recomendar un modelo concreto** con enlace; la familia lo compra donde quiera.
+2. Vender como servicio el **"te la dejo lista"**: la configuramos en modo kiosco y se envía preparada, o lo hace la farmacia (§7).
+3. Comprar stock solo con volumen y con el modelo ya validado.
+
+### 6.4.5 Dónde está la frontera de nuestra responsabilidad
+
+**No es "la batería no es nuestro problema".** Cuando la alarma no suene porque el móvil estaba apagado, la familia dirá *"esta app no funciona"* y la desinstalará. En un producto cuya única promesa es avisar, todo fallo es nuestro aunque la causa no lo sea. Los detectores de humo pitan al quedarse sin pila por esta misma razón.
+
+La línea asumible es otra: **nos responsabilizamos de detectarlo y de decir qué hacer; no de enchufar el cargador.** El latido del §6.3 ya lleva el nivel de batería dentro, y el aviso al familiar nombra el motivo concreto:
+
+> *"El móvil de tu madre lleva 2 días sin dar señales. Última vez: ayer 21:40, batería 11 %."*
+
+**[Probable]** La mayoría de las incidencias de soporte serán "no ha sonado" y casi ninguna será un error de programación. Declarar eso fuera de alcance no elimina el trabajo: solo lo convierte en una discusión sobre de quién fue la culpa.
+
+---
+
 ## 7. Canal de distribución
 
 Decisión: el producto es **solo familiar** (mayor + hijos), pero el canal de venta **no** es solo Google Play. Son cosas independientes y conviene no confundirlas: la farmacia no necesita ser usuaria de la app para recomendarla.
@@ -389,6 +445,11 @@ Definidos **ahora**, para no racionalizarlos después:
 | 12 | v1 con `SCHEDULE_EXACT_ALARM`; `USE_EXACT_ALARM` a evaluar después | 2026-11-15 | **Verificada contra la política de Play** |
 | 13 | Latido obligatorio: el fallo del sistema se notifica al familiar | 2026-11-15 | Propuesta, derivada de §6.3 |
 | 14 | Prohibida toda recogida pasiva de datos del mayor | 2026-11-15 | **Impuesta por la política de Play** (§8.3) |
+| 15 | Dos niveles: app sola como adquisición, tablet como producto | 2026-11-15 | Propuesta, sin validar |
+| 16 | Tablet en modo kiosco (*device owner*) para el nivel serio | 2026-11-15 | Propuesta, pendiente de probar |
+| 17 | Sin hardware propio, sin televisores, sin Alexa en la v1 | 2026-11-15 | Propuesta |
+| 18 | Recomendar modelo de tablet antes que comprar stock | 2026-11-15 | Propuesta |
+| 19 | Asumimos detectar el fallo, no evitar que se agote la batería | 2026-11-15 | Propuesta |
 
 ---
 

@@ -132,6 +132,7 @@ El dato clínicamente relevante no es *qué* tomó, sino **que tomó algo no pre
 - Alta y gestión de las pautas (medicamento, dosis, horas, días).
 - Panel de cumplimiento: histórico de confirmaciones.
 - Recepción de escalados.
+- **Vigilancia del estado del sistema (latido).** Aviso explícito al familiar cuando el dispositivo del mayor deja de reportar, pierde el permiso de alarma exacta o se queda sin batería. Ver §6.2: el fallo silencioso es el modo de fallo peligroso.
 - Identificación y registro de las tomas no previstas; generación del informe para el médico.
 - Lista de comprobación guiada del alta (§5.2).
 - Aquí, y solo aquí, se añaden funciones en el futuro.
@@ -152,7 +153,8 @@ Razón: la app del mayor debe ser **incapaz** de mostrar otra cosa. Que el códi
 
 - Comprobación de interacciones medicamentosas. **Riesgo regulatorio, §8.2.**
 - Cálculo o ajuste de dosis. **Mismo riesgo.**
-- Citas médicas, hidratación, agenda, recados, detección de inactividad, videollamada.
+- Citas médicas, hidratación, agenda, recados, videollamada. *(Aplazadas; entrarían por la app del familiar.)*
+- **Detección de inactividad, ubicación, conteo de pasos y cualquier otra recogida pasiva de datos del mayor. No aplazado: prohibido.** Ver §8.3 — convierte el producto en vigilancia de un adulto, sin exención posible en Play.
 - Integración con receta electrónica.
 - iOS.
 - El centro de día o la residencia **como usuario** del producto. (Siguen siendo canal de venta, §7.)
@@ -208,7 +210,7 @@ Y pone un techo al crecimiento puramente orgánico: **[Probable]** este producto
 
 - **Doze mode / App Standby** retrasan alarmas inexactas de forma indefinida.
 - **Los fabricantes** (Xiaomi/MIUI, Huawei/EMUI, Oppo, Vivo, Samsung) matan procesos en background de forma agresiva y mal documentada. Referencia: `dontkillmyapp.com`.
-- **Android 12+** requiere `SCHEDULE_EXACT_ALARM`; `USE_EXACT_ALARM` (API 33+) está restringido por política de Play a apps de tipo despertador/calendario. **[Probable]** una app de medicación cualifica, pero hay que justificarlo. **Esto es lo primero que hay que verificar: si Play lo deniega, el producto no existe en esta forma.**
+- **Android 12+** exige el acceso especial "Alarmas y recordatorios". Dos permisos posibles, ya verificados en §6.2.
 - Hay que **reprogramar todas las alarmas** en `BOOT_COMPLETED` y tras cada actualización.
 
 ### 6.1 Spike técnico — hacer esto antes de cualquier pantalla
@@ -227,6 +229,46 @@ Objetivo: demostrar 100 % de disparos en 72 h sobre hardware real y hostil.
 **Protocolo:** alarmas cada hora durante 72 h, en al menos un Xiaomi y un Samsung reales, móvil quieto, con y sin exención de batería.
 
 **Criterio de éxito:** desviación máxima < 60 s y **cero disparos perdidos** con la exención concedida.
+
+### 6.2 Verificado: los permisos de alarma exacta no son un obstáculo
+
+Comprobado el 2026-11-15 contra la documentación de Android y el anuncio de políticas de Play del 27 de julio de 2022.
+
+| | `SCHEDULE_EXACT_ALARM` | `USE_EXACT_ALARM` (API 33+) |
+|---|---|---|
+| Concesión | La da el usuario en Ajustes | Automática al instalar |
+| Revocable por el usuario | Sí | No |
+| Filtro de política de Play | **Ninguno** | Sí, permiso restringido |
+| Casos de uso | *"Broader set of use cases"* | Limitados |
+
+**[Seguro]** La política de Play sobre el permiso restringido es un **test funcional, no una lista blanca de categorías**:
+
+> *"apps must only declare this permission if their core functionality requires an exact alarm. Apps declaring the new restricted permission that do not meet these criteria will not be permitted on Google Play."*
+
+Un recordatorio de medicación lo cumple de forma evidente. La idea de que solo cualifican despertadores y calendarios venía de guías de terceros, no de Google.
+
+**Decisión:** v1 con `SCHEDULE_EXACT_ALARM`, que no pasa por ninguna puerta de política y se concede durante el alta acompañada (§5.2). Evaluar `USE_EXACT_ALARM` más adelante por la ventaja de ser irrevocable.
+
+**Método confirmado:** `setAlarmClock()`. De la documentación: *"the system never adjusts their delivery time. The system identifies these alarms as the most critical ones and leaves low-power modes if necessary to deliver the alarms."*
+
+### 6.3 El fallo silencioso: el riesgo real
+
+**[Seguro]** De la documentación de Android:
+
+> *"When the SCHEDULE_EXACT_ALARM permission is revoked for your app, your app stops, and all future exact alarms are canceled."*
+
+Y lo pueden revocar **tanto el usuario como el sistema**. Además, `SCHEDULE_EXACT_ALARM` no se preconcede en instalaciones nuevas en API 33+, y se deniega al restaurar datos desde una copia de seguridad en un dispositivo nuevo.
+
+Traducción: el dispositivo del mayor puede dejar de avisar **sin que nadie lo note**, hasta que haya un problema de salud. Es el modo de fallo que convierte este producto en peligroso.
+
+**Requisito no negociable — latido:**
+
+1. El dispositivo del mayor reporta a diario que sigue instalado, con permiso concedido y con alarmas programadas.
+2. Si deja de reportar, **el familiar recibe un aviso de que el sistema está caído**.
+3. Receptor de `ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED` que reprograma y notifica al familiar si se pierde el permiso.
+4. Comprobar `canScheduleExactAlarms()` antes de cada programación.
+
+> El fallo tiene que ser ruidoso en el lado de quien puede arreglarlo. Sin latido no tienes un producto fiable: tienes uno que lo parece.
 
 ---
 
@@ -263,9 +305,33 @@ Prioridad descendente:
 
 **Decisión de diseño:** la frontera "solo registramos, nunca interpretamos" es una restricción deliberada que compra velocidad.
 
-### 8.3 Política de Play sobre apps de monitorización
+### 8.3 Política de Play sobre stalkerware — la restricción más dura del proyecto
 
-**[Probable]** Play prohíbe las apps que monitorizan a una persona sin su conocimiento y exige, para las legítimas, consentimiento y notificación visible y persistente. De ahí la regla de transparencia permanente en §4.2. *Verificar la política actual antes de diseñar el alta.*
+Comprobado el 2026-11-15 contra el anuncio de políticas de Play de septiembre de 2020 (archivo de políticas; **la redacción viva puede diferir y conviene releerla antes de publicar**).
+
+**El problema.** Literal:
+
+> *"Apps exclusively designed and marketed for parents to track their children or enterprise management, provided they fully comply with the requirements described below are the only acceptable surveillance apps. These apps cannot be used to track anyone else (a spouse, for example) even with their knowledge and permission, regardless if persistent notification is displayed."*
+
+Un hijo supervisando a su madre adulta **no entra en ninguna de las dos exenciones** (padres con hijos menores, o empresas con empleados). Y el consentimiento del mayor **no sirve** como defensa. Si el producto se clasifica como *surveillance app*, está prohibido.
+
+**Lo que nos salva.** La misma política define una segunda categoría, permitida:
+
+> *"Non-stalkerware apps distributed on the Play Store which monitor or track a user's behavior on a device must minimally comply with these requirements: Apps must not present themselves as a spying or secret surveillance solution. Apps must not hide or cloak tracking behavior or attempt to mislead users about such functionality. Apps must present users with a persistent notification at all times when the app is running and a unique icon that clearly identifies the app."*
+
+**[Probable]** Este producto cae aquí, y no en *surveillance*, por una razón concreta: **el mayor pulsa el botón**. La app no le observa, recibe un parte que él emite voluntariamente. Es la diferencia entre un sensor y una lista de la compra compartida.
+
+**Requisitos que esto impone:**
+
+- Notificación persistente siempre que la app esté activa.
+- Icono único e identificable.
+- Nada de lenguaje de vigilancia en la copy ni en la ficha de Play. Nunca "controla", "vigila" o "supervisa a distancia".
+- Declarar la función de aviso al familiar en la propia ficha de Play.
+- La transparencia permanente en pantalla del §4.2.
+
+**La consecuencia que cambia el roadmap:** cualquier recogida **pasiva** de datos del mayor (ubicación, inactividad, pasos, sensores) rompe el argumento activo/pasivo y te mete en *surveillance* de un adulto, sin exención posible. Por eso esas funciones pasan de "aplazadas" a **prohibidas** en §4.7.
+
+**Pendiente:** la política advierte que *"You are solely responsible for determining the legality of your app in its targeted locale"*. Para España hay que sumar la capacidad jurídica del mayor y el RGPD. **Esto requiere abogado antes de publicar, no después.**
 
 ### 8.4 Lenguaje
 
@@ -293,8 +359,10 @@ Definidos **ahora**, para no racionalizarlos después:
 
 | Mátalo si... | Porque |
 |---|---|
-| Play deniega el permiso de alarma exacta a esta categoría | La promesa central es inejecutable. |
+| ~~Play deniega el permiso de alarma exacta a esta categoría~~ | **Descartado el 2026-11-15.** Ver §6.2: `SCHEDULE_EXACT_ALARM` no pasa por ninguna política. |
 | El spike no logra cero alarmas perdidas en 72 h en MIUI | El producto no puede cumplir su única promesa. |
+| No se consigue un latido fiable que delate el fallo silencioso | Un producto que falla en silencio es peor que ninguno (§6.3). |
+| Un abogado concluye que la supervisión familiar de un adulto no encaja en la categoría *non-stalkerware* de Play | No habría forma de publicarlo, con o sin consentimiento (§8.3). |
 | De 10 familiares entrevistados, menos de 4 describen el problema sin que lo sugieras | No hay dolor, hay cortesía. |
 | Ninguna farmacia acepta recomendarlo ni hacer el alta | Sin canal, quedas solo en Play contra incumbentes de diez años. |
 | A los 60 días del piloto, la confirmación diaria baja del 60 % | El mayor no sostiene el hábito; el bucle no funciona. |
@@ -318,6 +386,9 @@ Definidos **ahora**, para no racionalizarlos después:
 | 9 | Dos apps en Play con módulo `:core` común | 2026-11-15 | Propuesta |
 | 10 | Alta acompañada presencial con QR, checklist y alarma de prueba | 2026-11-15 | Propuesta, sin validar |
 | 11 | Cero mantenimiento en el dispositivo del mayor tras el alta | 2026-11-15 | Propuesta |
+| 12 | v1 con `SCHEDULE_EXACT_ALARM`; `USE_EXACT_ALARM` a evaluar después | 2026-11-15 | **Verificada contra la política de Play** |
+| 13 | Latido obligatorio: el fallo del sistema se notifica al familiar | 2026-11-15 | Propuesta, derivada de §6.3 |
+| 14 | Prohibida toda recogida pasiva de datos del mayor | 2026-11-15 | **Impuesta por la política de Play** (§8.3) |
 
 ---
 
@@ -334,7 +405,16 @@ Definidos **ahora**, para no racionalizarlos después:
 
 ## 13. Siguiente acción
 
-1. **Verificar la política de Play sobre alarmas exactas y sobre apps de monitorización.** Veinte minutos. Puede invalidar el planteamiento.
-2. **Spike de fiabilidad de alarmas (§6.1).** Dos días, en paralelo a las entrevistas.
+1. ~~Verificar la política de Play sobre alarmas exactas y apps de monitorización.~~ **Hecho el 2026-11-15.** Resultado: las alarmas exactas no son obstáculo (§6.2); la política de stalkerware sí impone límites permanentes al alcance (§8.3).
+2. **Spike de fiabilidad de alarmas (§6.1), ampliado con el latido (§6.3).** Dos días, en paralelo a las entrevistas.
+3. **Consulta legal** sobre el encaje de la supervisión familiar de un adulto en la categoría *non-stalkerware*, y sobre responsable del tratamiento en el RGPD. Antes de publicar, no antes de programar.
 
 No empezar por las pantallas.
+
+---
+
+## Fuentes verificadas
+
+- [Schedule alarms — Android Developers](https://developer.android.com/develop/background-work/services/alarms/schedule)
+- [Policy announcement: July 27, 2022 — Exact Alarm API restricted permission](https://support.google.com/googleplay/android-developer/answer/14554661)
+- [Policy announcement: September 16, 2020 — Stalkerware, effective October 1, 2020](https://support.google.com/googleplay/android-developer/answer/10065487)
